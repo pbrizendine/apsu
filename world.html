@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script src="js/privacy.js"></script
+    ><script src="js/theme.js"></script>
+    <script src="js/ui.js" defer></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>World | APSU</title>
+    <link rel="stylesheet" href="css/auth.css" />
+    <link rel="stylesheet" href="css/world-page.css" />
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/playtest.css" /><link rel="stylesheet" href="css/site.css" />
+  </head>
+  <body class="app-page">
+    <header
+      ><p><a class="apsu-home" href="index.html">APSU</a></p></header
+    >
+    <main>
+      <a class="button-link" href="launchpad.html">Return to Launchpad</a>
+      <p id="world-status" role="status">Loading world…</p>
+      <button id="retry" type="button" hidden>Try Again</button>
+      <div id="world-content" hidden>
+        <section>
+          <a id="world-admin-link" class="button-link" target="_blank" rel="noopener" hidden
+            >Admin Panel</a
+          ><h1 id="world-title"></h1>
+          <p id="world-description"></p>
+          <h2>World Images</h2>
+          <div id="world-images"></div>
+          <p id="image-placeholder">World images will appear here.</p>
+        </section>
+        <section aria-labelledby="characters-heading">
+          <h2 id="characters-heading">Your Characters</h2>
+          <p id="character-count"></p>
+          <div id="character-list"></div>
+          <form id="character-form">
+            <label for="character-name">Character name</label>
+            <input id="character-name" name="name" maxlength="60" required autocomplete="off" />
+            <button id="create-character" type="submit">Create Character</button>
+          </form>
+          <p id="character-status" role="status"></p>
+        </section>
+      </div>
+    </main>
+    <script src="js/supabase-vendor.js"></script>
+    <script src="js/apsu-config.js"></script>
+    <script src="js/supabase-client.js"></script
+    ><script src="js/account-eligibility.js"></script
+    ><script src="js/direct-messages.js"></script>
+    <script src="js/world.js"></script>
+  </body>
+</html>

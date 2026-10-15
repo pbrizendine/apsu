@@ -1,0 +1,25 @@
+begin;
+do $$ declare u uuid:=gen_random_uuid();v uuid:=gen_random_uuid();a uuid:=gen_random_uuid();b uuid:=gen_random_uuid();pick uuid:=gen_random_uuid();req uuid:=gen_random_uuid();broken uuid:=gen_random_uuid();
+begin
+ insert into auth.users(id,raw_user_meta_data) values(u,'{}'),(v,'{}');
+ insert into public.characters(id,player_id,world_id,slot,name,room_id) values(a,u,'alska-mogue',1,'Inventory A','roomA'),(b,v,'alska-mogue',1,'Inventory B','roomA');
+ insert into public.chat_visits(id,player_id,character_id,world_id,room_id) values(gen_random_uuid(),u,a,'alska-mogue','roomA'),(gen_random_uuid(),v,b,'alska-mogue','roomA');
+ insert into public.character_items(id,character_id,kind,capacity,slot) values(pick,a,'lockpick',50,1),(broken,a,'lockpick',0,4);
+ perform set_config('request.jwt.claim.sub',u::text,true);
+ perform public.inventory_action(req,a,pick,'give',b);perform public.inventory_action(req,a,pick,'give',b);
+ if not exists(select 1 from public.character_items where id=pick and character_id=b and capacity=50) then raise exception 'Transfer failed';end if;
+ begin perform public.inventory_action(gen_random_uuid(),a,pick,'delete');raise exception 'Foreign deletion allowed';exception when others then if sqlerrm<>'Item no longer in your inventory' then raise;end if;end;
+ perform set_config('request.jwt.claim.sub',v::text,true);
+ perform public.inventory_action(gen_random_uuid(),b,pick,'drop');
+ if exists(select 1 from public.character_items where id=pick) or not exists(select 1 from public.ground_items where id=pick and capacity=50) then raise exception 'Drop failed';end if;
+ perform set_config('request.jwt.claim.sub',u::text,true);
+ perform public.inventory_action(gen_random_uuid(),a,pick,'pickup');
+ if exists(select 1 from public.ground_items where id=pick) then raise exception 'Pickup duplicated';end if;
+ perform public.wear_lockpick_item(pick,0);
+ if (select slot from public.character_items where id=pick)<4 or public.inventory_slot(a,'lockpick',100)<>1 then raise exception 'Broken pick occupied usable slot';end if;
+ perform public.inventory_action(gen_random_uuid(),a,pick,'delete');
+ begin perform public.save_world_map_image('alska-mogue','alska-mogue/test');raise exception 'Nonstaff uploaded map';exception when others then if sqlerrm<>'Admin permission required for this world' then raise;end if;end;
+ if has_function_privilege('anon','public.inventory_action(uuid,uuid,uuid,text,uuid)','EXECUTE') then raise exception 'Anonymous action allowed';end if;
+end $$;
+rollback;
+select 'PASS: transfer, retries, ownership, drop/pickup, condition preservation, broken slots, map permission, anonymous denial' as result;

@@ -1,0 +1,37 @@
+begin;
+do $$
+declare a uuid:=gen_random_uuid(); b uuid:=gen_random_uuid(); ca uuid:=gen_random_uuid(); cb uuid:=gen_random_uuid(); im uuid; path text; j jsonb;
+begin
+ insert into auth.users(id,raw_user_meta_data) values(a,'{}'),(b,'{}');
+ insert into public.characters(id,player_id,world_id,slot,name,room_id) values(ca,a,'alska-mogue',1,'Profile Test','roomA'),(cb,b,'alska-mogue',1,'Other Test','roomA');
+ perform set_config('request.jwt.claim.sub',a::text,true);
+ perform public.save_character_description(ca,'Test description');
+ j:=public.character_profile(ca);
+ if j->>'description'<>'Test description' or not (j->>'is_owner')::boolean then raise exception 'Profile save failed'; end if;
+ begin perform public.save_character_description(cb,'Forbidden');raise exception 'Ownership bypass';exception when others then if sqlerrm<>'Only the character owner can edit this profile' then raise;end if;end;
+ path:=a::text||'/'||ca::text||'/test.png';
+ execute 'set local role authenticated';
+ insert into storage.objects(bucket_id,name) values('character-images',path);
+ begin insert into storage.objects(bucket_id,name) values('character-images',a::text||'/'||cb::text||'/forbidden.png');raise exception 'Foreign upload allowed';exception when insufficient_privilege then null;end;
+ execute 'reset role';
+ im:=public.add_character_image(ca,path,'Portrait');
+ perform public.set_character_avatar(ca,im);
+ if (public.character_profile(ca)->>'avatar_id')::uuid<>im then raise exception 'Avatar failed';end if;
+ perform set_config('request.jwt.claim.sub',b::text,true);
+ begin perform public.set_character_avatar(cb,im);raise exception 'Foreign avatar accepted';exception when others then if sqlerrm<>'Choose an image from this character' then raise;end if;end;
+ if (public.character_profile(ca)->>'is_owner')::boolean then raise exception 'Foreign owner';end if;
+ perform set_config('request.jwt.claim.sub',a::text,true);
+ insert into public.world_locations values('alska-mogue','testRoomD','moonCrossing','Room D','Test',3,0);
+ insert into public.room_connections values('alska-mogue','roomA','testRoomD',null),('alska-mogue','testRoomD','roomA',null);
+ if jsonb_array_length(public.world_map('alska-mogue')->'rooms')<4 then raise exception 'Dynamic map failed';end if;
+ perform public.save_character_location(ca,'roomA','testRoomD');
+ perform public.enter_chat(gen_random_uuid(),ca,'testRoomD');
+ perform public.save_character_location(ca,'testRoomD','roomA');
+ begin perform public.save_character_location(ca,'roomA','roomC');raise exception 'Nonadjacent movement';exception when others then if sqlerrm<>'Rooms are not adjacent' then raise;end if;end;
+ perform public.save_character_location(ca,'roomA','roomB');
+ update public.world_doors set locked=true where world_id='alska-mogue' and door_id='roomC';
+ begin perform public.save_character_location(ca,'roomB','roomC');raise exception 'Locked movement';exception when others then if sqlerrm<>'The door is locked' then raise;end if;end;
+ if has_function_privilege('anon','public.character_profile(uuid)','execute') then raise exception 'Anonymous profile access';end if;
+end $$;
+rollback;
+select 'PASS: profile ownership, storage ownership, portraits, dynamic rooms, chat entry, adjacency, locked doors' as result;

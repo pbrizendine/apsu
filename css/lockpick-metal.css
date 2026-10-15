@@ -1,0 +1,92 @@
+/* Metallic lock interaction. Progress and damaged-tool colors stay independent. */
+body.lockpick-metal,
+#lockpick-dialog {
+  --metal-ink: #293238;
+  --metal-tool: #65727c;
+  --metal-edge: #78858e;
+}
+body.lockpick-metal {
+  color: var(--metal-ink);
+}
+.lockpick-metal .lock {
+  border-color: transparent;
+  background:
+    linear-gradient(
+        135deg,
+        #f6f8f9,
+        color-mix(in srgb, #b7c1c8, #ffd6de var(--damage)) 48%,
+        #e5eaed
+      )
+      padding-box,
+    conic-gradient(from 35deg, #eef2f5, #747f88, #e4e9ed, #9aa6af, #f8fafb, #747f88, #eef2f5)
+      border-box;
+  box-shadow:
+    inset 0 0 0 1px #ffffffa6,
+    inset 0 3px 8px #35414b30,
+    0 0 0 1px #65727c,
+    0 5px 12px #26343f26;
+}
+.lockpick-metal .keyhole {
+  background: #151c21;
+  box-shadow:
+    inset 2px 2px 3px #0009,
+    0 1px 0 #fff9;
+}
+.lockpick-metal .keyhole.drop-ready {
+  outline-color: #f3f6f8;
+  box-shadow:
+    0 0 0 5px #65727c,
+    0 0 12px #fff9;
+}
+.lockpick-metal .door-key {
+  filter: drop-shadow(1px 2px 1px #26343f55);
+}
+.lockpick-metal .door-key circle {
+  fill: #e3e8eb;
+  stroke: var(--metal-tool);
+}
+.lockpick-metal .door-key path {
+  stroke: var(--metal-tool);
+}
+/* Controls use the same theme tokens as Cancel in the parent page. */
+.lockpick-metal button {
+  background: var(--button);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-family: 'Nunito Sans', 'Trebuchet MS', sans-serif;
+  box-shadow: none;
+}
+.lockpick-metal button:hover:not(:disabled) {
+  background: var(--hover);
+}
+.lockpick-metal button:active:not(:disabled) {
+  background: var(--active);
+}
+.lockpick-metal button:focus-visible,
+.lockpick-metal .door-key:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+.lockpick-metal #key-reminder {
+  color: var(--metal-ink);
+  background: #e3e8eb;
+  border-color: var(--metal-edge);
+}
+
+/* Neutral defaults only; inline gold/green/red progress feedback stays intact. */
+.lockpick-metal .progress-ring circle {
+  stroke: #50545a;
+}
+.lockpick-metal .attempt-track {
+  background-color: #b8bbbf;
+}
+.lockpick-metal .attempt-fill {
+  background-color: #41454b;
+}
+
+/* Readable titles over a dark page; tool and progress colors are independent. */
+:root[data-theme='dark'] body.lockpick-metal {
+  color: #f1f2f4;
+  --color-900: #f1f2f4;
+}

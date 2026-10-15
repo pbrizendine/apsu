@@ -1,0 +1,249 @@
+/* Match the colors, typography, and buttons in lockpick.html. */
+:root {
+  --color-50: #e6f7ff;
+  --color-100: #c7eeff;
+  --color-200: #8adcff;
+  --color-300: #5cceff;
+  --color-400: #2ec0ff;
+  --color-500: #00b2ff;
+  --color-600: #0092d1;
+  --color-700: #0072a3;
+  --color-800: #005275;
+  --color-900: #003247;
+  --color-950: #00121a;
+}
+
+body {
+  background-color: var(--color-50);
+  color: var(--color-900);
+  font-family: Arial, sans-serif;
+  text-align: left;
+  margin: 0;
+  padding: 16px;
+}
+
+h1 {
+  font-size: 28px;
+  margin: 0 0 12px;
+}
+
+p {
+  line-height: 1.5;
+}
+
+button,
+.button-link {
+  background-color: var(--color-100);
+  border: 1px solid var(--color-600);
+  border-radius: 6px;
+  color: var(--color-900);
+  padding: 12px 18px;
+  font: inherit;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+button:hover,
+.button-link:hover {
+  background: var(--color-200);
+}
+
+button:active,
+.button-link:active {
+  background: var(--color-300);
+}
+
+button:focus-visible,
+.button-link:focus-visible {
+  outline: 2px solid var(--color-800);
+  outline-offset: 3px;
+}
+
+.button-link {
+  display: inline-block;
+  text-decoration: none;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+header p {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 12px 0;
+}
+/* Equal outer columns keep the conversation centered on wide screens. */
+main {
+  display: grid;
+  grid-template-columns: minmax(200px, 1fr) minmax(340px, 640px) minmax(200px, 1fr);
+  gap: 32px;
+  align-items: start;
+}
+.room-details,
+.room-chat {
+  min-width: 0;
+}
+.room-chat {
+  position: sticky;
+  top: 16px;
+}
+@media (max-width: 960px) {
+  main {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .room-chat {
+    position: static;
+  }
+}
+[hidden] {
+  display: none !important;
+}
+.account-menu {
+  position: relative;
+}
+.account-menu summary {
+  background: var(--color-100);
+  border: 1px solid var(--color-600);
+  border-radius: 6px;
+  padding: 12px 18px;
+  cursor: pointer;
+}
+.account-menu summary:hover {
+  background: var(--color-200);
+}
+.account-menu summary:active {
+  background: var(--color-300);
+}
+.account-menu summary:focus-visible {
+  outline: 2px solid var(--color-800);
+  outline-offset: 3px;
+}
+.account-options {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  z-index: 1;
+  width: min(240px, calc(100vw - 32px));
+  box-sizing: border-box;
+  padding: 12px;
+  background: var(--color-50);
+  border: 1px solid var(--color-600);
+  border-radius: 6px;
+}
+.account-options p {
+  font-size: 16px;
+  overflow-wrap: anywhere;
+}
+.account-options button {
+  display: block;
+  width: 100%;
+  margin: 8px 0 0;
+}
+#profile-dialog {
+  box-sizing: border-box;
+  width: min(420px, calc(100vw - 32px));
+  background: var(--color-50);
+  color: var(--color-900);
+  border: 1px solid var(--color-600);
+  border-radius: 6px;
+  padding: 24px;
+}
+#profile-dialog::backdrop {
+  background: rgb(0 0 0 / 15%);
+}
+#profile-dialog dt {
+  font-weight: bold;
+  margin-top: 16px;
+}
+#profile-dialog dd {
+  margin: 4px 0 0;
+  overflow-wrap: anywhere;
+}
+main section + section {
+  margin-top: 32px;
+}
+h2 {
+  font-size: 20px;
+  margin: 0 0 12px;
+}
+#lock-status {
+  min-height: 24px;
+  margin: 20px 0 12px;
+}
+
+/* Keep the lockpicking popup transparent. */
+#lockpick-dialog {
+  width: min(720px, calc(100vw - 32px));
+  max-width: none;
+  max-height: calc(100dvh - 32px);
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+#lockpick-dialog::backdrop {
+  background: rgb(0 0 0 / 15%);
+}
+.lockpick-toolbar {
+  display: flex;
+  justify-content: flex-end;
+}
+#lockpick-dialog iframe {
+  display: block;
+  width: 100%;
+  height: min(780px, calc(100dvh - 96px));
+  border: 0;
+  background: transparent;
+}
+#chat-messages {
+  list-style: none;
+  margin: 16px 0;
+  padding: 16px;
+  height: clamp(140px, 28dvh, 320px);
+  overflow-y: auto;
+  border: 1px solid var(--color-600);
+  border-radius: 6px;
+  background: var(--color-100);
+}
+#chat-messages li + li {
+  margin-top: 16px;
+}
+#chat-messages p {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  margin: 4px 0;
+}
+#chat-messages strong {
+  overflow-wrap: anywhere;
+}
+#chat-messages time {
+  margin-left: 12px;
+  font-size: 12px;
+}
+#chat-form label {
+  display: block;
+  margin: 16px 0 8px;
+}
+#chat-input {
+  box-sizing: border-box;
+  width: 100%;
+  resize: vertical;
+  font: inherit;
+  color: var(--color-900);
+  border: 1px solid var(--color-600);
+  border-radius: 6px;
+  padding: 12px;
+}
+#chat-input:focus-visible {
+  outline: 2px solid var(--color-800);
+  outline-offset: 3px;
+}

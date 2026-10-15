@@ -1,0 +1,15 @@
+{
+  "name": "apsu-worlds",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Browser roleplay worlds with local single-player and optional AI",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node scripts/solo-dev.mjs",
+    "test": "node scripts/check.mjs",
+    "build": "node scripts/build-site.mjs"
+  },
+  "license": "MIT"
+}

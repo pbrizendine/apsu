@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en"
+  ><head
+    ><meta charset="utf-8" /><meta
+      name="viewport"
+      content="width=device-width,initial-scale=1"
+    /><title>World Administration | APSU</title
+    ><script src="js/privacy.js"></script
+    ><script src="js/theme.js"></script
+    ><script src="js/ui.js" defer></script
+    ><link rel="stylesheet" href="css/auth.css" /><link
+      rel="stylesheet"
+      href="css/theme.css"
+    /><link rel="stylesheet" href="css/admin.css" /><link
+      rel="stylesheet"
+      href="css/playtest.css"
+    /><link rel="stylesheet" href="css/site.css" /> </head
+  ><body class="app-page"
+    ><header
+      ><p><a class="apsu-home" href="index.html">APSU</a></p></header
+    ><main
+      ><h1>World Administration</h1><p id="admin-status" role="status">Checking permissions…</p
+      ><div id="admin-content" hidden>
+        <p id="admin-world"></p
+        ><nav class="admin-tabs"
+          ><button data-panel="locations">Locations &amp; teleport</button
+          ><button data-panel="world-settings" data-owner>World settings</button
+          ><a class="button-link" href="privacy-staff.html" data-founder hidden>Privacy requests</a
+          ><button data-panel="badges">World badges</button
+          ><button data-panel="moderation">Moderation</button
+          ><button data-panel="reports">Reports</button
+          ><button data-panel="staffchat">Admin Chat</button
+          ><button data-panel="items">Give or Place Items</button
+          ><button data-panel="create-rooms" data-lead hidden>Create Room</button
+          ><button data-panel="rooms" data-lead hidden>Room Editor</button></nav
+        >
+        <section id="moderation" class="admin-section"
+          ><h2>Players &amp; moderation</h2
+          ><section aria-label="Private world warnings"
+            ><h3>Warnings in this world</h3><div id="target-warnings"></div></section
+          ><form id="moderate" novalidate
+            ><label>Player<select id="target" required></select></label
+            ><p
+              ><a id="target-profile" class="button-link" target="_blank" rel="noopener"
+                >View APSU profile ↗</a
+              ></p
+            ><label
+              >Action<select id="action"
+                ><option value="warn">Warn</option
+                ><option value="mute">Mute</option
+                ><option value="unmute">Remove mute</option
+                ><option value="kick">Kick</option
+                ><option value="ban">Ban from this world</option
+                ><option value="unban">Remove world ban</option
+                ><option value="grant_owner" data-founder hidden>Assign World Owner</option
+                ><option value="grant_admin" data-owner hidden>Assign Admin</option
+                ><option value="grant_lead" data-owner hidden>Assign Lead Admin</option
+                ><option value="remove_admin" data-owner hidden>Remove admin roles</option></select
+              ></label
+            ><label id="duration-label" hidden
+              >Duration in minutes<input id="duration" type="number" min="1" max="525600" /><small
+                >For bans, leave blank for permanent. Mutes require a duration.</small
+              ></label
+            ><label
+              >Reason<textarea id="reason" required maxlength="1000" rows="3"></textarea></label
+            ><button type="submit">Apply action</button></form
+          ><h3>Recent moderation history</h3><div id="actions"></div
+        ></section>
+        <section id="reports" class="admin-section" hidden
+          ><h2>Player reports</h2><p>Players can submit /report followed by what happened.</p
+          ><div id="report-list"></div
+        ></section>
+        <section id="staffchat" class="admin-section" hidden
+          ><h2>Admin Chat</h2><p>Private to this world’s current admins.</p
+          ><div id="staff-messages" role="log"></div
+          ><form id="staff-form" novalidate
+            ><label
+              >Message<input id="staff-body" required maxlength="500" autocomplete="off" /></label
+            ><button>Send</button></form
+          ></section
+        >
+        <section id="create-rooms" class="admin-section" hidden>
+          <h2>Create Room</h2
+          ><p
+            >Connect a new location to an existing room. Both rooms will have a passage to each
+            other. The new room belongs to the same region.</p
+          >
+          <form id="create-room-form" novalidate>
+            <label>Location name<input id="new-room-name" required maxlength="80" /></label>
+            <label>Connect to<select id="new-room-anchor" required></select></label>
+            <label
+              >Place new room<select id="new-room-direction"
+                ><option value="top">Above (top)</option
+                ><option value="right">To the right</option
+                ><option value="bottom">Below (bottom)</option
+                ><option value="left">To the left</option></select
+              ></label
+            >
+            <label
+              >Description<textarea id="new-room-description" maxlength="4000" rows="4"></textarea>
+            </label>
+            <label
+              >Owned by character<select id="new-room-owner"
+                ><option value="">No character owner</option></select
+              ></label
+            ><p id="new-room-placement" role="status"></p><button type="submit">Create room</button>
+          </form></section
+        ><section id="rooms" class="admin-section" hidden
+          ><h2>Room Editor</h2><label>Choose a room<select id="room-select"></select></label
+          ><form id="room-form" novalidate
+            ><label>Location name<input id="room-title" required maxlength="80" /></label
+            ><label>Region / section name<input id="region-title" required maxlength="80" /></label
+            ><p>Changing the region name updates all rooms in that region.</p
+            ><label
+              >Surroundings description<textarea
+                id="room-description"
+                maxlength="4000"
+                rows="5"
+              ></textarea></label
+            ><img
+              id="room-image-preview"
+              class="room-editor-image"
+              alt="Current surroundings"
+              hidden
+            /><label
+              >Upload surroundings image<input
+                id="room-image"
+                type="file"
+                accept="image/jpeg,image/png,image/webp" /></label
+            ><p>JPEG, PNG or WebP · up to 5 MB. Leave empty to keep the current image.</p
+            ><h3>Ownership</h3
+            ><label
+              >Owned by character<select id="room-owner"
+                ><option value="">No character owner</option></select
+              ></label
+            ><h3>Connected rooms</h3><p>Each passage works in both directions.</p
+            ><div id="room-connection-editor"></div><h3>Entrance door</h3
+            ><label><input id="door-enabled" type="checkbox" /> Lockable entrance</label
+            ><label>Entrance from<select id="door-outside"></select></label
+            ><p>A newly enabled door starts locked. Other exits are unchanged.</p
+            ><h3>Room objects</h3
+            ><p
+              >Choose a descriptive object or a scripted pickup. Pickups are shared: once collected,
+              they leave the room. Use Spawn Items to create keys for any configured room door.</p
+            ><div id="object-editors"></div><button id="add-object" type="button">Add object</button
+            ><p><button type="submit">Save room</button></p></form
+          ></section
+        >
+        <section id="locations" class="admin-section" hidden
+          ><h2>Characters &amp; locations</h2><p>Only this world’s admins can see this roster.</p
+          ><div id="admin-locations"></div
+          ><form id="teleport-form" novalidate
+            ><label>Your character<select id="teleport-character"></select></label
+            ><label>Destination<select id="teleport-destination"></select></label
+            ><button>Teleport</button></form
+          ></section
+        >
+        <section id="world-settings" class="admin-section" hidden
+          ><h2>World access</h2
+          ><p
+            >Only the world owner or APSU Founder can change this rating. Raising it to 18+
+            disconnects younger characters and blocks re-entry.</p
+          ><form id="world-rating-form" novalidate
+            ><label
+              >Minimum player age<select id="world-min-age"
+                ><option value="13">13+</option
+                ><option value="18">18+</option></select
+              ></label
+            ><button type="submit">Save age rating</button></form
+          ><p id="world-rating-status" role="status"></p></section
+        ><section id="badges" class="admin-section" hidden
+          ><h2>World badges</h2
+          ><p
+            >Custom badges are decorative. Use Moderation to grant admin permissions. APSU badges
+            are reserved for APSU staff.</p
+          ><label
+            >Badge<select id="badge-select"
+              ><option value="">Create a badge</option></select
+            ></label
+          ><form id="badge-form" novalidate
+            ><label>Name<input id="badge-name" maxlength="60" required /></label
+            ><label>Border color<input id="badge-color" type="color" value="#479663" /></label
+            ><label
+              >Description<textarea
+                id="badge-description"
+                maxlength="200"
+                rows="2"
+              ></textarea></label
+            ><span id="badge-preview" class="player-badge">Badge preview</span
+            ><button>Save badge</button></form
+          ><form id="badge-award-form" novalidate
+            ><label>Player<select id="badge-player"></select></label
+            ><label>Badge<select id="badge-award"></select></label
+            ><label
+              >Action<select id="badge-award-action"
+                ><option value="give">Give badge</option
+                ><option value="remove">Remove badge</option></select
+              ></label
+            ><button>Apply</button></form
+          ><div id="badge-awards"></div
+        ></section>
+        <section id="items" class="admin-section" hidden
+          ><h2>Give or Place Items</h2
+          ><form id="spawn-form" novalidate
+            ><label
+              >Destination<select id="spawn-destination"
+                ><option value="character">Give to a character</option
+                ><option value="room">Place in a room</option></select
+              ></label
+            ><label>Player · Character<select id="spawn-character" required></select></label
+            ><label>Place in room<select id="spawn-room"></select></label
+            ><label
+              >Item<select id="spawn-kind"
+                ><option value="custom">Custom item</option
+                ><option value="key">Room key</option
+                ><option value="lockpick-full">Full lockpick</option
+                ><option value="lockpick-damaged">Damaged lockpick</option
+                ><option value="lockpick-broken">Broken lockpick</option></select
+              ></label
+            ><div id="spawn-custom"
+              ><label>Item name<input id="spawn-name" maxlength="80" required /></label
+              ><label
+                >Description<textarea
+                  id="spawn-description"
+                  maxlength="1000"
+                ></textarea></label></div
+            ><div id="spawn-appearance"></div
+            ><label>Key opens<select id="spawn-key-room"></select></label
+            ><label
+              >Quantity<input
+                id="spawn-quantity"
+                type="number"
+                min="1"
+                max="100"
+                step="1"
+                value="1" /></label
+            ><button id="issue-items" type="submit">Give items</button></form
+          ><p
+            >Deliver directly to a character’s inventory or place on the ground. Each delivery is
+            recorded in moderation history. Three usable lockpicks per character; broken picks have
+            no inventory cap. Maximum 100 items per delivery.</p
+          ></section
+        ></div
+      ><p><a class="button-link" href="launchpad.html">Launchpad</a></p></main
+    ><script src="js/supabase-vendor.js"></script
+    ><script src="js/item-display.js"></script
+    ><script src="js/apsu-config.js"></script>
+    <script src="js/supabase-client.js"></script
+    ><script src="js/account-eligibility.js"></script
+    ><script src="js/direct-messages.js"></script
+    ><script src="js/database-api.js"></script
+    ><script src="js/admin.js"></script
+    ><script src="js/admin-tools.js"></script
+    ><script src="js/admin-items.js"></script
+    ><script src="js/world-settings.js"></script></body
+></html>

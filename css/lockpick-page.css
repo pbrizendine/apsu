@@ -1,0 +1,309 @@
+:root {
+  --color-50: #e6f7ff;
+  --color-100: #c7eeff;
+  --color-200: #8adcff;
+  --color-300: #5cceff;
+  --color-400: #2ec0ff;
+  --color-500: #00b2ff;
+  --color-600: #0092d1;
+  --color-700: #0072a3;
+  --color-800: #005275;
+  --color-900: #003247;
+  --color-950: #00121a;
+}
+
+html {
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+body {
+  box-sizing: border-box;
+  height: 100%;
+  overflow: hidden;
+  background-color: transparent;
+  color: var(--color-900);
+  font-family: Arial, sans-serif;
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+h1 {
+  font-size: 28px;
+  margin: 0 0 12px;
+}
+
+p {
+  line-height: 1.5;
+}
+
+.lock {
+  --damage: 0%;
+  width: 250px;
+  height: 250px;
+  background-color: color-mix(in srgb, var(--color-100), #ffd6de var(--damage));
+  border: 15px solid var(--color-600);
+  border-radius: 50%;
+  margin: 28px auto 24px;
+  position: relative;
+}
+
+.keyhole {
+  width: 20px;
+  height: 100px;
+  background-color: var(--color-950);
+  border-radius: 6px;
+  margin: 75px auto;
+}
+
+.pick {
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  position: absolute;
+  width: 6px;
+  height: 200px;
+  background-color: var(--pick-color, var(--color-700));
+  border-radius: 3px;
+  left: 50%;
+  top: -75px;
+  transform: translateX(-50%) rotate(0deg);
+  transform-origin: bottom center;
+  z-index: 1;
+}
+
+.pick.loose {
+  position: fixed;
+  left: auto;
+  top: auto;
+  right: 12px;
+  bottom: 24px;
+  transform: none;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  z-index: 3;
+}
+
+/* A wider invisible area makes the thin pick easier to grab. */
+.pick::after {
+  content: '';
+  position: absolute;
+  inset: 0 -9px;
+}
+
+.pick.dragging {
+  cursor: grabbing;
+}
+.pick-shard {
+  position: absolute;
+  width: 6px;
+  background-color: var(--pick-color, var(--color-700));
+  pointer-events: none;
+  z-index: 1;
+}
+.keyhole.drop-ready {
+  outline: 3px solid var(--color-500);
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.progress-ring {
+  transform-origin: center;
+  position: absolute;
+  top: -25px;
+  left: -25px;
+  width: 300px;
+  height: 300px;
+  pointer-events: none;
+}
+
+.progress-ring circle {
+  fill: none;
+  stroke: var(--color-200);
+  stroke-width: 10;
+}
+
+/* Shared button appearance. */
+button {
+  background-color: var(--color-100);
+  border: 1px solid var(--color-600);
+  border-radius: 6px;
+  color: var(--color-900);
+  padding: 12px 18px;
+  font: inherit;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--color-200);
+}
+
+button:active {
+  background: var(--color-300);
+}
+
+button:focus-visible {
+  outline: 2px solid var(--color-800);
+  outline-offset: 3px;
+}
+
+.try-button {
+  background-color: var(--color-300);
+}
+
+button[aria-pressed='true'] {
+  background: var(--color-800);
+  color: white;
+}
+
+.result {
+  min-height: 27px;
+  margin: 20px 0 0;
+  font-size: 18px;
+}
+
+.attempt-counter {
+  width: 180px;
+  margin: 24px auto 0;
+  text-align: center;
+}
+
+.attempt-number {
+  display: block;
+  font-size: 28px;
+  font-weight: bold;
+  transition: color 150ms;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 8px;
+}
+
+.attempt-track {
+  height: 8px;
+  border-radius: 999px;
+  overflow: hidden;
+  background-color: var(--color-200);
+}
+
+.attempt-fill {
+  height: 100%;
+  border-radius: 999px;
+  background-color: var(--color-700);
+}
+.spare-pick {
+  position: fixed;
+  bottom: 24px;
+  width: 6px;
+  height: 200px;
+  background: var(--color-700);
+  border-radius: 3px;
+  cursor: grab;
+  touch-action: none;
+  z-index: 4;
+}
+.spare-pick::after {
+  content: '';
+  position: absolute;
+  inset: 0 -9px;
+}
+.door-key {
+  position: fixed;
+  width: 36px;
+  height: 132px;
+  right: 156px;
+  bottom: 248px;
+  touch-action: none;
+  cursor: grab;
+  z-index: 5;
+  transform-origin: 18px 120px;
+  transform: rotate(90deg);
+}
+.door-key svg {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+.door-key .key-body {
+  transition: transform 240ms ease-out;
+}
+/* At +90deg, local y=130 meets the hole's far (left) edge.
+   The shaft overlays the full black opening and stops at that edge. */
+.door-key.seated {
+  clip-path: inset(0 0 2px 0);
+}
+.door-key.seated .key-teeth {
+  visibility: hidden;
+}
+.door-key.seated .key-body {
+  transform: translateY(32px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .door-key .key-body {
+    transition: none;
+  }
+}
+.door-key:focus-visible {
+  outline: 2px solid var(--color-800);
+}
+#key-reminder {
+  position: fixed;
+  top: 64px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: calc(100vw - 64px);
+  padding: 12px 18px;
+  background: var(--color-100);
+  border: 1px solid var(--color-600);
+  border-radius: 6px;
+  z-index: 10;
+  pointer-events: none;
+}
+/* Reserve control space so inserting a tool does not move the lock. */
+.pick-controls {
+  visibility: hidden;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  width: calc(100% - 160px);
+  margin: 0 auto;
+}
+.pick-controls button {
+  min-width: 0;
+  margin: 0;
+  padding: 10px 4px;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.attempt-counter {
+  visibility: hidden;
+}
+@media (max-height: 650px) {
+  body {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+  h1 {
+    font-size: 24px;
+    margin-bottom: 4px;
+  }
+  .attempt-counter {
+    margin-top: 8px;
+  }
+  .lock {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+  .pick-controls button {
+    padding: 6px 8px;
+    font-size: 14px;
+  }
+  .result:empty {
+    display: none;
+  }
+}

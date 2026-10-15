@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Solo World | APSU</title>
+    <script src="js/privacy.js"></script
+    ><script src="js/theme.js"></script
+    ><script src="js/ui.js" defer></script>
+    <link rel="stylesheet" href="css/room-page.css" /><link
+      rel="stylesheet"
+      href="css/room.css"
+    /><link rel="stylesheet" href="css/theme.css" /><link
+      rel="stylesheet"
+      href="css/site.css"
+    /><link rel="stylesheet" href="css/room-workspace.css" /><link
+      rel="stylesheet"
+      href="css/solo.css"
+    />
+    <link rel="stylesheet" href="css/world-themes.css" />
+  </head>
+  <body class="app-page solo-page">
+    <header
+      ><p><a class="apsu-home" href="index.html">APSU</a></p
+      ><nav class="header-actions"
+        ><a class="button-link" href="launchpad.html#single-player">Launchpad</a
+        ><button id="ai-settings">AI connection</button></nav
+      ></header
+    >
+    <main>
+      <div class="solo-heading"
+        ><div
+          ><p class="eyebrow" id="solo-world-heading">Single Player</p
+          ><h1 id="room-title">Loading your world…</h1
+          ><p id="solo-location-context" class="location-context" hidden></p></div
+        ><div
+          ><button id="reset-solo-layout">Reset panel layout</button
+          ><button id="open-checkpoints">Checkpoints</button
+          ><button id="download-save" disabled>Download Save</button
+          ><p id="save-status" role="status">Opening local save…</p
+          ><button id="retry-save" hidden>Retry Save</button></div
+        ></div
+      >
+      <p id="solo-error" role="alert"></p>
+      <div class="solo-layout" id="solo-layout" hidden>
+        <aside class="room-details">
+          <section class="panel solo-panel surroundings"
+            ><h2>Your surroundings</h2><p id="room-description"></p
+            ><img id="surroundings-image" hidden alt="" />
+            <div id="surroundings-loading" class="surroundings-loading" hidden role="status">
+              <span>Creating this room’s image…</span>
+              <small>You can close the dialog and keep playing.</small>
+            </div>
+            <p id="surroundings-image-status" role="status" hidden></p>
+            <div id="surroundings-decision" hidden>
+              <button id="keep-surroundings" type="button">Keep</button>
+              <button id="discard-surroundings" type="button">Discard</button>
+            </div>
+            <button id="generate-surroundings">Generate surroundings image</button></section
+          >
+          <section class="panel solo-panel"
+            ><h2>Go somewhere</h2>
+            <button id="expand-solo-map" class="solo-map-button" aria-label="Expand location map"
+              ><span class="mini-map" id="solo-map"></span
+            ></button>
+            <div id="solo-exits" class="solo-actions"></div
+            ><p class="eyebrow">Open to explore room connections.</p>
+          </section>
+          <section class="panel solo-panel"
+            ><h2>Imagine</h2><p>Optional scene illustration. Your world works without it.</p
+            ><div id="scene-gallery" hidden
+              ><img id="kept-scene" alt="Kept scene illustration" /><div class="scene-gallery-nav"
+                ><button type="button" id="scene-previous" aria-label="Previous scene">‹</button
+                ><span id="scene-position" role="status"></span
+                ><button type="button" id="scene-next" aria-label="Next scene">›</button></div
+              ><p>Kept on this device. Download images separately from your world save.</p></div
+            ><button id="open-imagine">Imagine this scene</button></section
+          >
+        </aside>
+        <section
+          class="room-chat solo-panel solo-conversation"
+          aria-labelledby="conversation-heading"
+        >
+          <h2 id="conversation-heading">In-Character</h2
+          ><p id="connection-status">AI disconnected · story actions remain available.</p>
+          <div
+            id="solo-chat"
+            role="log"
+            aria-label="Story and conversation"
+            aria-live="polite"
+          ></div>
+          <p id="solo-typing" role="status" aria-live="polite"></p
+          ><label for="solo-recipient">Speak to</label
+          ><select id="solo-recipient" aria-label="Speak to"></select
+          ><label class="solo-reactions"
+            ><input type="checkbox" id="solo-reactions" /> Allow one nearby character to chime in
+            (at most one extra request per turn; 30-second cooldown)</label
+          ><form id="solo-chat-form" novalidate
+            ><label for="solo-message">Message</label
+            ><textarea id="solo-message" rows="2" placeholder="What do you say?"></textarea
+            ><div class="solo-composer"
+              ><div class="solo-composer-tools"
+                ><button id="solo-undo" type="button" hidden>Undo last message</button
+                ><button id="solo-commands" type="button">Commands</button
+                ><span id="solo-counter">0 characters</span></div
+              ><button id="solo-send" type="submit">Send</button></div
+            ></form
+          >
+        </section>
+        <aside class="room-sidebar">
+          <section class="panel solo-panel"
+            ><h2>In this room</h2
+            ><div id="room-characters"
+              ><p id="solo-character"></p
+              ><button
+                id="elias-presence"
+                data-character-id="elias"
+                data-character-name="Elias"
+              ></button></div
+            ><div id="solo-story-actions" class="solo-actions"></div
+          ></section>
+          <section class="panel solo-panel"
+            ><h2>Items in this room</h2><div id="room-items" class="solo-actions"></div
+          ></section>
+          <section class="panel solo-panel"
+            ><h2>Inventory</h2><p id="inventory">0 items</p
+            ><button id="add-solo-prop">Add roleplay prop</button></section
+          >
+          <section class="panel solo-panel world-card"
+            ><h2>Current world</h2><strong id="solo-world-name">Local world</strong>
+            <p>Single Player · Saved on this device</p>
+            <details><summary>Story notes</summary><p id="solo-objective"></p></details>
+
+            <a class="button-link" href="launchpad.html#single-player">Return Home</a>
+          </section>
+          <section class="panel solo-panel" data-panel-id="solo-usage"
+            ><h2>AI usage</h2><h3>Dialogue usage</h3><p id="solo-usage"></p
+            ><p id="solo-cost" role="status"></p><h3>Image usage</h3
+            ><p id="image-usage">No image requests this tab.</p
+            ><p
+              >Token totals belong to this save. Cost receipts and request attempts cover this tab
+              only. Missing receipts are unknown, not zero. Provider billing is the final total.</p
+            ><a href="https://openrouter.ai/activity" target="_blank" rel="noopener noreferrer"
+              >View OpenRouter usage</a
+            ></section
+          >
+        </aside>
+      </div>
+    </main>
+    <dialog id="solo-npc-dialog" aria-labelledby="solo-npc-name"
+      ><h2 id="solo-npc-name">Character profile</h2
+      ><div role="tablist" aria-label="Character profile"
+        ><button
+          id="npc-character-tab"
+          role="tab"
+          aria-selected="true"
+          aria-controls="npc-character-panel"
+          >Character</button
+        ><button
+          id="npc-ooc-tab"
+          role="tab"
+          aria-selected="false"
+          aria-controls="npc-ooc-panel"
+          tabindex="-1"
+          >OOC inspector</button
+        ></div
+      ><section id="npc-character-panel" role="tabpanel" aria-labelledby="npc-character-tab"
+        ><p id="solo-npc-description"></p><p id="solo-npc-roles"></p></section
+      ><section id="npc-ooc-panel" role="tabpanel" aria-labelledby="npc-ooc-tab" hidden
+        ><p
+          >This is an optional debugging view. Use it to inspect or correct the AI’s state; ordinary
+          play does not require it. It reveals private goals and memories.</p
+        ><p id="npc-character-depth" style="white-space: pre-line"></p
+        ><p id="npc-goal-development"></p><label for="npc-goal">Goal</label
+        ><textarea id="npc-goal" maxlength="1000"></textarea><label for="npc-memory">Memory</label
+        ><textarea id="npc-memory" maxlength="2500"></textarea><h3>Relationships (private OOC)</h3>
+        <label>Feelings toward<select id="relationship-target"></select></label>
+        <label for="relationship-status">Relationship status</label>
+        <textarea
+          id="relationship-status"
+          rows="5"
+          readonly
+          aria-describedby="relationship-direction"
+        ></textarea>
+        <p id="relationship-direction" class="muted"
+          >This character’s perspective only. Feelings are not necessarily mutual.</p
+        >
+        <label><input id="relationship-met" type="checkbox" /> Has met</label>
+        <label><input id="relationship-name" type="checkbox" /> Knows their name</label>
+        <label
+          >Trust (-100 to 100)<input id="relationship-trust" type="number" min="-100" max="100"
+        /></label>
+        <label
+          >Affection (-100 to 100)<input
+            id="relationship-affection"
+            type="number"
+            min="-100"
+            max="100"
+        /></label>
+        <label
+          ><input id="relationship-romance" type="checkbox" /> Romantic interest (this character
+          only)</label
+        >
+        <label
+          >Private feelings<textarea id="relationship-feelings" maxlength="500"></textarea>
+        </label>
+        <button id="save-relationship" type="button">Save relationship</button>
+        <h3>Inventory</h3><p id="solo-npc-items"></p><p id="npc-location"></p
+        ><button id="save-npc-state">Save OOC corrections</button
+        ><p id="npc-inspector-status" role="status"></p></section
+      ><button id="close-npc">Close</button></dialog
+    >
+    <dialog id="solo-player-dialog" aria-labelledby="solo-player-heading">
+      <h2 id="solo-player-heading">Your character</h2>
+      <form id="solo-player-form" novalidate>
+        <label for="solo-player-name">Name</label><input id="solo-player-name" maxlength="60" />
+        <label for="solo-player-appearance">Appearance</label
+        ><textarea id="solo-player-appearance" maxlength="1000"></textarea> <h3>Current roles</h3
+        ><p id="solo-player-roles"></p>
+        <button type="button" id="solo-player-edit-roles">Manage world roles</button>
+        <p id="solo-player-status" role="status"></p>
+        <button type="submit">Save character</button
+        ><button type="button" id="solo-player-close">Close</button>
+      </form>
+    </dialog>
+    <dialog id="surroundings-viewer" aria-label="Enlarged image">
+      <h2>Surroundings</h2
+      ><div class="image-zoom-controls"
+        ><button id="surroundings-zoom-out" type="button" aria-label="Zoom out">−</button
+        ><output id="surroundings-zoom-level">100%</output
+        ><button id="surroundings-zoom-in" type="button" aria-label="Zoom in">+</button
+        ><button id="surroundings-zoom-reset" type="button">Fit</button></div
+      >
+      <div id="surroundings-viewport"
+        ><img id="surroundings-expanded" alt="Room surroundings"
+      /></div>
+      <button id="surroundings-viewer-close" type="button">Close</button>
+    </dialog>
+    <dialog id="solo-prop-dialog" aria-label="Add roleplay prop"
+      ><h2>Add roleplay prop</h2
+      ><p
+        >Descriptive objects have no scripted abilities. Existing world items must be picked up or
+        transferred.</p
+      ><form id="solo-prop-form"
+        ><label for="prop-name">Name</label><input id="prop-name" maxlength="80" required /><label
+          for="prop-description"
+          >Description</label
+        ><textarea id="prop-description"></textarea><button>Add prop</button
+        ><button type="button" id="close-prop">Cancel</button></form
+      ></dialog
+    >
+    <dialog id="solo-map-dialog" aria-labelledby="solo-map-heading"
+      ><h2 id="solo-map-heading">Hotel Vesper · Locations</h2
+      ><div class="map-tools"
+        ><button id="map-area-mode">This area</button
+        ><button id="map-world-mode">World areas</button></div
+      ><div class="map-viewport"><div class="mini-map" id="solo-expanded-map"></div></div
+      ><button id="close-solo-map">Close</button></dialog
+    >
+    <dialog id="solo-ai-dialog" aria-labelledby="solo-ai-heading">
+      <h2 id="solo-ai-heading">AI settings</h2>
+      <div role="tablist" aria-label="AI settings"
+        ><button
+          type="button"
+          role="tab"
+          id="ai-tab-dialogue"
+          aria-controls="ai-panel-dialogue"
+          aria-selected="true"
+          >Dialogue</button
+        ><button
+          type="button"
+          role="tab"
+          id="ai-tab-images"
+          aria-controls="ai-panel-images"
+          aria-selected="false"
+          tabindex="-1"
+          >Images</button
+        ></div
+      >
+      <section role="tabpanel" id="ai-panel-dialogue" aria-labelledby="ai-tab-dialogue">
+        <p id="dialogue-connection" role="status">Not connected</p><p id="solo-provider-note"></p>
+        <p
+          >The key stays in this tab unless you choose Remember this connection below. It is never
+          included in saves. This prototype’s AI connection is for adults; local story actions
+          require no key.</p
+        >
+        <form id="solo-ai-form" novalidate
+          ><label for="solo-provider">Provider</label>
+          <select id="solo-provider"
+            ><option value="openrouter">OpenRouter</option></select
+          >
+          <div id="solo-router-options">
+            <label for="solo-model">Model</label>
+            <select id="solo-model">
+              <option value="apodex/apodex-1.1-mini:free" selected>Apodex 1.1 Mini · Free</option>
+              <option value="openai/gpt-4.1-mini">GPT-4.1 Mini · Paid</option
+              ><option value="anthropic/claude-sonnet-5.5">Claude Sonnet 5.5 · Paid</option
+              ><option value="anthropic/claude-opus-5.5">Claude Opus 5.5 · Paid</option
+              ><option value="custom">Other OpenRouter model</option>
+            </select>
+            <div id="solo-custom-model-field" hidden
+              ><label for="solo-custom-model">OpenRouter model ID</label>
+              <input
+                id="solo-custom-model"
+                maxlength="160"
+                placeholder="provider/model-name:free"
+                autocomplete="off"
+            /></div>
+            <p
+              >The free model is selected by default. Paid models use your OpenRouter credits only
+              when you choose and connect one. There are no automatic model fallbacks.</p
+            >
+          </div>
+          <label id="solo-key-label" for="solo-api-key">OpenRouter API key</label
+          ><input
+            data-secret-label="key"
+            id="solo-api-key"
+            placeholder="Leave blank to keep the connected key"
+            type="password"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <label class="solo-consent"
+            ><input id="solo-ai-consent" type="checkbox" /> I am 18 or older and agree to send this
+            scene context to the selected model when I send a message, including its charges if I
+            choose a paid model.</label
+          >
+          <label class="solo-consent"
+            ><input id="solo-remember-key" type="checkbox" />
+            Remember this connection on this device and restore it automatically.
+          </label>
+          <p class="muted"
+            >Stores your key in this browser without encryption. Use only on a trusted device. It is
+            excluded from world saves. Disconnect removes it.</p
+          >
+          <p id="solo-ai-error" role="status"></p><button type="submit">Save connection</button
+          ><button id="solo-ai-disconnect" type="button">Disconnect AI</button
+          ><button id="close-ai" type="button">Close</button></form
+        > </section
+      ><section role="tabpanel" id="ai-panel-images" aria-labelledby="ai-tab-images" hidden
+        ><h3>Optional image model</h3
+        ><p
+          >Separate from dialogue. Choose an OpenRouter image model; image generation may cost
+          credits. Nothing generates automatically. Keys stay in this tab and are excluded from
+          saves.</p
+        ><a
+          href="https://openrouter.ai/models?output_modalities=image"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Browse image models and pricing</a
+        ><label for="image-model">Image model</label
+        ><select id="image-model"
+          ><option value="inclusionai/ming-image-0.1-design">Ming Image 0.1 Design · Free</option
+          ><option value="custom">Custom image model</option></select
+        ><input
+          id="image-custom-model"
+          hidden
+          maxlength="160"
+          placeholder="provider/image-model"
+        /><label
+          ><input id="image-reuse-key" type="checkbox" checked /> Use my connected OpenRouter
+          key</label
+        ><p
+          >Free availability is provider-dependent, not unlimited. APSU allows one image request per
+          minute. Custom models may charge.</p
+        ><div id="image-key-fields" hidden
+          ><label for="image-key">OpenRouter image API key</label
+          ><input data-secret-label="key" id="image-key" type="password" autocomplete="off" /></div
+        ><button id="connect-image" type="button">Connect image model</button
+        ><button id="disconnect-image" type="button">Disconnect images</button
+        ><p id="image-connection" role="status">Images disconnected</p></section
+      >
+      <button id="close-ai-settings" type="button">Close</button>
+    </dialog>
+    <dialog id="solo-imagine-dialog" aria-label="Imagine scene"
+      ><h2>Imagine</h2><label for="image-prompt">Review scene prompt</label
+      ><textarea id="image-prompt" maxlength="8000" rows="8"></textarea
+      ><label class="solo-consent"
+        ><input id="image-approve" type="checkbox" />I am 18 or older and approve sending this
+        prompt to OpenRouter and its image provider, with any charges for one image.</label
+      ><button id="generate-image">Generate one image</button><p id="image-status" role="status"></p
+      ><div id="image-decision" hidden
+        ><button id="keep-image" type="button">Keep</button
+        ><button id="discard-image" type="button">Discard</button></div
+      ><img id="image-preview" alt="AI illustration of the reviewed scene" hidden /><a
+        id="download-image"
+        class="button-link"
+        hidden
+        >Download image</a
+      ><p
+        >Keep saves the image on this device with this world. Download a separate backup; images are
+        not included in exported JSON saves.</p
+      ><button id="close-imagine">Close</button></dialog
+    >
+    <dialog id="lockpick-dialog" aria-label="Unlock the door"
+      ><iframe id="solo-lock-frame" title="Lockpick the door"></iframe
+      ><button id="cancel-lock">Cancel</button></dialog
+    >
+    <dialog id="solo-death-dialog" aria-labelledby="solo-death-heading">
+      <h2 id="solo-death-heading">Your character has died</h2>
+      <p id="solo-respawn-description"
+        >Return to the automatic save made before this combat. The fight and its dialogue will be
+        undone, restoring everyone’s previous health, possessions, memories, and location. AI usage
+        already incurred is not refunded.</p
+      >
+      <button id="solo-respawn" type="button">Respawn</button>
+      <button id="solo-quit-dead" type="button">Quit world</button>
+    </dialog>
+    <dialog id="auto-connection-dialog" aria-labelledby="auto-connection-heading">
+      <h2 id="auto-connection-heading">Automatic connection failed</h2>
+      <p id="auto-connection-error"></p>
+      <button id="auto-connection-close" type="button">Close</button>
+    </dialog>
+    <dialog id="checkpoint-dialog"
+      ><h2>Save checkpoints</h2
+      ><p
+        >Keep a named moment, restore it, or continue it as a separate world. These local
+        checkpoints are separate from downloaded saves.</p
+      ><label for="checkpoint-name">Checkpoint name</label
+      ><input id="checkpoint-name" maxlength="60" placeholder="Before opening the door" /><button
+        id="checkpoint-create"
+        >Save checkpoint</button
+      ><p id="checkpoint-status" role="status"></p><div id="checkpoint-list"></div
+      ><button id="checkpoint-close">Close</button></dialog
+    >
+    <script src="js/item-display.js"></script
+    ><script src="js/inventory-ui.js"></script
+    ><script src="js/chat-commands.js"></script
+    ><script src="js/world-map.js"></script
+    ><script src="js/solo-engine.js"></script
+    ><script src="js/solo-mercer.js"></script
+    ><script src="js/solo-blueprint.js"></script
+    ><script src="js/solo-simulation.js"></script
+    ><script src="js/solo-generated.js"></script
+    ><script src="js/solo-timeline.js"></script>
+    <script src="js/solo-checkpoints.js"></script>
+    <script src="js/solo-store.js"></script
+    ><script src="js/solo-gallery.js"></script
+    ><script src="js/solo-imagine.js"></script
+    ><script src="js/panel-layout.js"></script
+    ><script src="js/action-text.js"></script
+    ><script src="js/solo-world-ui.js"></script
+    ><script src="js/solo-connection.js"></script
+    ><script src="js/solo-page.js"></script>
+  </body>
+</html>

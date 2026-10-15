@@ -1,0 +1,129 @@
+body.app-page.home-page {
+  max-width: 1160px;
+  margin: auto;
+  padding: 24px 32px;
+}
+body.app-page.home-page main {
+  max-width: none;
+  padding: 34px 0 64px;
+  background: none;
+  border: 0;
+  box-shadow: none;
+}
+body.app-page.home-page main > section {
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  padding: 0;
+}
+.home-page .home-intro {
+  max-width: 730px;
+  margin: 30px 0 64px;
+}
+.home-page .eyebrow {
+  color: var(--muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.09em;
+  margin: 0 0 12px;
+}
+body.app-page.home-page h1 {
+  font: 500 clamp(32px, 4.4vw, 48px) / 1.2 var(--font-story);
+  letter-spacing: -0.035em;
+  margin: 0 0 24px;
+}
+.home-intro > p {
+  font-size: 18px;
+  line-height: 1.65;
+}
+.home-intro .home-note {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 24px;
+}
+.directory-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 14px;
+}
+.directory-heading h2 {
+  margin: 0;
+}
+.directory-heading span {
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+}
+.home-world {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 24px;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--border);
+}
+.world-monogram {
+  width: 76px;
+  height: 92px;
+  display: grid;
+  place-items: center;
+  font: 24px var(--font-story);
+  background: var(--panel-fill);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+.home-world h3 {
+  font: 26px var(--font-story);
+  margin: 4px 0 10px;
+}
+.home-world p {
+  margin: 0;
+}
+.home-world .button-link {
+  margin: 0;
+  white-space: nowrap;
+}
+@media (max-width: 620px) {
+  body.app-page.home-page {
+    padding: 16px;
+  }
+  .home-page .home-intro {
+    margin: 18px 0 38px;
+  }
+  .home-world {
+    grid-template-columns: 52px minmax(0, 1fr);
+    gap: 16px;
+  }
+  .world-monogram {
+    width: 52px;
+    height: 70px;
+    font-size: 18px;
+  }
+  .home-world .button-link {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
+
+/* The home page is a world directory, with restrained type rather than a hero slogan. */
+body.app-page.home-page h1 {
+  font:
+    600 clamp(28px, 3.2vw, 38px) / 1.25 system-ui,
+    sans-serif;
+  letter-spacing: -0.025em;
+}
+.home-page .home-intro {
+  margin: 18px 0 40px;
+  max-width: 680px;
+}
+.home-page .home-world h3 {
+  font:
+    600 24px/1.3 system-ui,
+    sans-serif;
+}
+.home-page .home-intro > .eyebrow {
+  letter-spacing: 0;
+  font-size: 14px;
+}

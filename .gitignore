@@ -1,0 +1,21 @@
+# Machine-specific clutter and local recovery copies
+.DS_Store
+Thumbs.db
+/backups/
+*.log
+
+# Credentials and local configuration (examples can be tracked)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Generated dependencies and build output
+node_modules/
+dist/
+coverage/
+__pycache__/
+
+# Local Cloudflare state
+.wrangler/

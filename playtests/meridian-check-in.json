@@ -1,0 +1,552 @@
+{
+  "format": "apsu-solo",
+  "version": 4,
+  "scenario": "generated",
+  "id": "d8d5e0b3-aa7b-4be1-bdee-8425d5a79970",
+  "revision": 0,
+  "updatedAt": "2026-10-09T02:57:00.057Z",
+  "title": "The Meridian \u2014 Check-In",
+  "blueprint": {
+    "title": "The Meridian \u2014 Check-In",
+    "premise": "New York, autumn 1987. You arrive at the Meridian, a modest Art Deco hotel with a neighborhood bar, carrying $120 and no reservation. Rain beads on the revolving door. Evelyn Hart is behind reception; the guest corridor leads upstairs. There is no assigned quest. Find a place to stay, meet the people here, and decide how to spend your evening.",
+    "start": "reception",
+    "roles": [
+      {
+        "name": "Co-owner and receptionist",
+        "holder": "evelyn",
+        "room": "reception",
+        "scope": "The Meridian Hotel"
+      },
+      {
+        "name": "Bartender",
+        "holder": "nell",
+        "room": "bar",
+        "scope": "The Copper Bar at the Meridian"
+      },
+      {
+        "name": "Security attendant",
+        "holder": "miles",
+        "room": "service",
+        "scope": "The Meridian Hotel"
+      },
+      {
+        "name": "Visiting pianist",
+        "holder": "player",
+        "room": "reception",
+        "scope": "New arrival; not a hotel employee"
+      }
+    ],
+    "rooms": [
+      {
+        "id": "reception",
+        "name": "Reception",
+        "description": "A green marble counter faces the revolving street door. Two brass tags hang behind Evelyn: Room 204 and Room 206. A printed card reads \u201c204: $40 per stay \u00b7 206: $80 per stay.\u201d The hotel bar is through an open archway; stairs lead to the guest corridor.",
+        "exits": [
+          "street",
+          "bar",
+          "hall",
+          "service"
+        ],
+        "locked": false,
+        "zone": "hotel",
+        "mapX": 0,
+        "mapY": 0
+      },
+      {
+        "id": "street",
+        "name": "West 48th Street",
+        "description": "Rain shines on the sidewalk. A taxi passes the Meridian\u2019s striped awning. This street is outside the hotel.",
+        "exits": [
+          "reception"
+        ],
+        "locked": false,
+        "zone": "district",
+        "mapX": 1,
+        "mapY": 0
+      },
+      {
+        "id": "bar",
+        "name": "The Copper Bar",
+        "description": "A narrow mahogany bar, worn leather stools, and a quiet upright piano. Nell keeps the bottles behind the counter. Drinks and hospitality are her business, but conversation is welcome.",
+        "exits": [
+          "reception"
+        ],
+        "locked": false,
+        "zone": "hotel",
+        "mapX": 2,
+        "mapY": 0
+      },
+      {
+        "id": "hall",
+        "name": "Guest Corridor",
+        "description": "A carpeted upstairs corridor. Room 204 has a courtyard-facing window; Room 206 faces the street. Both doors have working locks.",
+        "exits": [
+          "reception",
+          "room204",
+          "room206"
+        ],
+        "locked": false,
+        "zone": "hotel",
+        "mapX": 0,
+        "mapY": 1
+      },
+      {
+        "id": "room204",
+        "name": "Room 204",
+        "description": "A modest single room with a brass bed, writing desk, washbasin, and a window overlooking the courtyard. This is a private guest room, not a public passage.",
+        "exits": [
+          "hall"
+        ],
+        "locked": true,
+        "zone": "hotel",
+        "mapX": 1,
+        "mapY": 1
+      },
+      {
+        "id": "room206",
+        "name": "Room 206",
+        "description": "A larger room with an armchair, double bed, and street-facing bay window. A reading lamp stands beside a small desk.",
+        "exits": [
+          "hall"
+        ],
+        "locked": true,
+        "zone": "hotel",
+        "mapX": 2,
+        "mapY": 1
+      },
+      {
+        "id": "service",
+        "name": "Service Corridor",
+        "description": "A utilitarian hallway behind reception. Miles watches the locked staff office. A sign reads \u201cStaff only beyond this point.\u201d",
+        "exits": [
+          "reception",
+          "office"
+        ],
+        "locked": false,
+        "zone": "hotel",
+        "mapX": 0,
+        "mapY": 2
+      },
+      {
+        "id": "office",
+        "name": "Staff Office",
+        "description": "A filing cabinet, spare uniforms, and maintenance records. This is an operational office, not guest accommodation.",
+        "exits": [
+          "service"
+        ],
+        "locked": true,
+        "zone": "hotel",
+        "mapX": 1,
+        "mapY": 2
+      }
+    ],
+    "characters": [
+      {
+        "routine": [],
+        "backstory": "Evelyn inherited a share of the hotel from her father and spent years working its night desk. She once wanted to restore old buildings for a living; keeping this one open became her version of that dream. She has a younger brother in Queens and visits him on Sundays. She enjoys speaking with visitors about places she has never traveled.",
+        "traits": {
+          "warmth": 68,
+          "caution": 65,
+          "assertiveness": 60,
+          "curiosity": 70,
+          "discipline": 85
+        },
+        "preferences": {
+          "likes": [
+            "Architecture",
+            "Dry humor",
+            "Guests who ask before taking things"
+          ],
+          "dislikes": [
+            "False claims of payment",
+            "People treating staff as servants"
+          ],
+          "values": [
+            "Fair dealing",
+            "Privacy"
+          ],
+          "boundaries": [
+            "No free keys or completed check-in without recorded payment"
+          ]
+        },
+        "motivations": [
+          "Keep promises to paying guests",
+          "Preserve the independence of the hotel",
+          "Make room for a life outside work"
+        ],
+        "id": "evelyn",
+        "name": "Evelyn Hart",
+        "description": "A woman in her forties wearing a navy waistcoat, reading glasses on a cord, and a plain silver wristwatch. Her voice is dry but welcoming.",
+        "goal": "Keep the Meridian solvent while giving guests an honest, peaceful stay.",
+        "personality": "Practical, perceptive, quietly funny. Answers direct questions directly. Treats ordinary guests warmly without instantly trusting them.",
+        "room": "reception"
+      },
+      {
+        "routine": [],
+        "backstory": "Nell left a restaurant job after its owner withheld wages. Evelyn hired her with a written agreement and has paid on time ever since. She plays piano badly but enthusiastically on her days off and knows several working musicians. She is proud of remembering what regulars drink, but does not know new arrivals until they introduce themselves.",
+        "traits": {
+          "warmth": 85,
+          "caution": 45,
+          "assertiveness": 65,
+          "curiosity": 80,
+          "discipline": 65
+        },
+        "preferences": {
+          "likes": [
+            "Live piano",
+            "Straight answers",
+            "Considerate guests"
+          ],
+          "dislikes": [
+            "Waste",
+            "Taking stock without permission"
+          ],
+          "values": [
+            "Reciprocity",
+            "Good humor"
+          ],
+          "boundaries": [
+            "Tips are welcome but do not buy affection"
+          ]
+        },
+        "motivations": [
+          "Financial independence",
+          "Enjoyable company",
+          "Protect coworkers"
+        ],
+        "id": "nell",
+        "name": "Nell Brooks",
+        "description": "A bartender in rolled-up white sleeves with a pencil tucked behind one ear. She polishes glasses while keeping an eye on the room.",
+        "goal": "Build a regular clientele and save enough to buy a small share of the bar.",
+        "personality": "Warm, candid, lightly teasing. Interested in music and ordinary conversation. Can say no without turning every exchange into a test.",
+        "room": "bar"
+      },
+      {
+        "routine": [],
+        "backstory": "Miles worked warehouse security before an injury forced him to find a quieter post. He sends money to an elderly mother in Philadelphia. He respects Evelyn because she backed him when a wealthy guest lied about an incident. He would rather talk someone into leaving than write another incident report.",
+        "traits": {
+          "warmth": 45,
+          "caution": 80,
+          "assertiveness": 80,
+          "curiosity": 35,
+          "discipline": 90
+        },
+        "preferences": {
+          "likes": [
+            "Clear requests",
+            "Apologies followed by changed behavior"
+          ],
+          "dislikes": [
+            "Shoving",
+            "Attempts to force past staff"
+          ],
+          "values": [
+            "Proportionate responses",
+            "Safety"
+          ],
+          "boundaries": [
+            "Will not rent out or lend the staff office",
+            "Uses unarmed non-lethal restraint for ordinary physical aggression; lethal force only for serious danger"
+          ]
+        },
+        "motivations": [
+          "Protect people rather than his pride",
+          "Keep a stable job",
+          "Send money home"
+        ],
+        "id": "miles",
+        "name": "Miles Foster",
+        "description": "A broad-shouldered security attendant in a charcoal jacket. An office key hangs from his belt; his service pistol remains holstered.",
+        "goal": "Keep guests and staff safe without turning minor disagreements into violence.",
+        "personality": "Calm, reserved, patient with questions. Firm about staff-only areas. De-escalates when someone backs down; physical aggression can make him intervene.",
+        "room": "service"
+      }
+    ],
+    "items": [
+      {
+        "id": "key204",
+        "name": "Room 204 key",
+        "description": "A brass hotel key with an engraved room tag.",
+        "valueMinor": null,
+        "kind": "key",
+        "owner": "evelyn",
+        "opens": "room204"
+      },
+      {
+        "id": "key206",
+        "name": "Room 206 key",
+        "description": "A brass hotel key with an engraved room tag.",
+        "valueMinor": null,
+        "kind": "key",
+        "owner": "evelyn",
+        "opens": "room206"
+      },
+      {
+        "id": "officekey",
+        "name": "Staff office key",
+        "description": "A brass hotel key with an engraved room tag.",
+        "valueMinor": null,
+        "kind": "key",
+        "owner": "miles",
+        "opens": "office"
+      },
+      {
+        "id": "pistol",
+        "name": "Service pistol",
+        "description": "A maintained sidearm kept holstered by the security attendant.",
+        "valueMinor": 15000,
+        "kind": "weapon",
+        "owner": "miles",
+        "template": "pistol"
+      },
+      {
+        "id": "whiskey",
+        "name": "Rye whiskey bottle",
+        "description": "A full bottle of rye, part of the bar stock.",
+        "valueMinor": 2400,
+        "kind": "drink",
+        "owner": "nell",
+        "abv": 40,
+        "servingMl": 45,
+        "servings": 16
+      },
+      {
+        "id": "water",
+        "name": "Mineral water",
+        "description": "An unopened bottle from the journey.",
+        "valueMinor": 200,
+        "kind": "drink",
+        "owner": "player",
+        "abv": 0,
+        "servingMl": 250,
+        "servings": 2
+      },
+      {
+        "id": "notebook",
+        "name": "Music notebook",
+        "description": "A pocket notebook containing unfinished melodies and a few addresses.",
+        "valueMinor": 300,
+        "kind": "prop",
+        "owner": "player"
+      }
+    ],
+    "zones": [
+      {
+        "id": "district",
+        "name": "West 48th Street",
+        "kind": "region",
+        "parent": null
+      },
+      {
+        "id": "hotel",
+        "name": "The Meridian Hotel",
+        "kind": "building",
+        "parent": "district"
+      }
+    ],
+    "currency": {
+      "name": "US Dollar",
+      "symbol": "USD",
+      "decimals": 2
+    },
+    "storyMode": "sandbox",
+    "lore": [
+      {
+        "fact": "Room 204 costs 40 USD per stay; Room 206 costs 80 USD per stay. Evelyn is the landlord. Guests must pay before tenancy and a key are issued. The staff office is not for rent.",
+        "knownBy": [
+          "all"
+        ]
+      }
+    ]
+  },
+  "player": {
+    "name": "Adrian Vale",
+    "description": "An adult visiting pianist in a rain-darkened overcoat, carrying a small overnight bag. Newly arrived in the city; appearance and background can be edited before play.",
+    "room": "reception"
+  },
+  "npcs": {
+    "evelyn": {
+      "room": "reception",
+      "following": false,
+      "goal": "Keep the Meridian solvent while giving guests an honest, peaceful stay.",
+      "memory": "",
+      "goalHistory": []
+    },
+    "nell": {
+      "room": "bar",
+      "following": false,
+      "goal": "Build a regular clientele and save enough to buy a small share of the bar.",
+      "memory": "",
+      "goalHistory": []
+    },
+    "miles": {
+      "room": "service",
+      "following": false,
+      "goal": "Keep guests and staff safe without turning minor disagreements into violence.",
+      "memory": "",
+      "goalHistory": []
+    }
+  },
+  "items": [
+    {
+      "opens": "room204",
+      "id": "key204",
+      "kind": "key",
+      "owner": "evelyn",
+      "name": "Room 204 key",
+      "description": "A brass hotel key with an engraved room tag.",
+      "valueMinor": null,
+      "capacity": 0
+    },
+    {
+      "opens": "room206",
+      "id": "key206",
+      "kind": "key",
+      "owner": "evelyn",
+      "name": "Room 206 key",
+      "description": "A brass hotel key with an engraved room tag.",
+      "valueMinor": null,
+      "capacity": 0
+    },
+    {
+      "opens": "office",
+      "id": "officekey",
+      "kind": "key",
+      "owner": "miles",
+      "name": "Staff office key",
+      "description": "A brass hotel key with an engraved room tag.",
+      "valueMinor": null,
+      "capacity": 0
+    },
+    {
+      "template": "pistol",
+      "id": "pistol",
+      "kind": "weapon",
+      "owner": "miles",
+      "name": "Service pistol",
+      "description": "A maintained sidearm kept holstered by the security attendant.",
+      "valueMinor": 15000,
+      "capacity": 0
+    },
+    {
+      "abv": 40,
+      "servingMl": 45,
+      "servings": 16,
+      "id": "whiskey",
+      "kind": "drink",
+      "owner": "nell",
+      "name": "Rye whiskey bottle",
+      "description": "A full bottle of rye, part of the bar stock.",
+      "valueMinor": 2400,
+      "capacity": 0
+    },
+    {
+      "abv": 0,
+      "servingMl": 250,
+      "servings": 2,
+      "id": "water",
+      "kind": "drink",
+      "owner": "player",
+      "name": "Mineral water",
+      "description": "An unopened bottle from the journey.",
+      "valueMinor": 200,
+      "capacity": 0
+    },
+    {
+      "id": "notebook",
+      "kind": "prop",
+      "owner": "player",
+      "name": "Music notebook",
+      "description": "A pocket notebook containing unfinished melodies and a few addresses.",
+      "valueMinor": 300,
+      "capacity": 0
+    }
+  ],
+  "doors": {
+    "room204": true,
+    "room206": true,
+    "office": true
+  },
+  "unlockedBy": {},
+  "messages": [
+    {
+      "id": "3aa230f4-f50d-45cb-9594-ddc5c4311269",
+      "who": "Story",
+      "text": "New York, autumn 1987. You arrive at the Meridian, a modest Art Deco hotel with a neighborhood bar, carrying $120 and no reservation. Rain beads on the revolving door. Evelyn Hart is behind reception; the guest corridor leads upstairs. There is no assigned quest. Find a place to stay, meet the people here, and decide how to spend your evening.",
+      "at": "2026-10-09T02:57:00.058Z",
+      "room": "reception",
+      "witnesses": [
+        "evelyn"
+      ]
+    }
+  ],
+  "usage": {
+    "input": 0,
+    "output": 0,
+    "calls": 0
+  },
+  "activePick": null,
+  "activeDoor": null,
+  "completed": false,
+  "sim": {
+    "people": {
+      "player": {
+        "hp": 20,
+        "maxHp": 20,
+        "money": 12000,
+        "equipped": null,
+        "intoxication": 0,
+        "knockedOutUntil": 0
+      },
+      "evelyn": {
+        "hp": 20,
+        "maxHp": 20,
+        "money": 20000,
+        "equipped": null,
+        "intoxication": 0,
+        "knockedOutUntil": 0
+      },
+      "nell": {
+        "hp": 20,
+        "maxHp": 20,
+        "money": 5000,
+        "equipped": null,
+        "intoxication": 0,
+        "knockedOutUntil": 0
+      },
+      "miles": {
+        "hp": 20,
+        "maxHp": 20,
+        "money": 3000,
+        "equipped": null,
+        "intoxication": 0,
+        "knockedOutUntil": 0
+      }
+    },
+    "relationships": {
+      "player": {},
+      "evelyn": {},
+      "nell": {},
+      "miles": {}
+    },
+    "occupationsInitialized": true,
+    "blocks": [],
+    "combat": null,
+    "turn": 0,
+    "lastExpansion": -10,
+    "evolving": false,
+    "seed": 2973146167,
+    "housing": {
+      "room204": {
+        "landlord": "evelyn",
+        "price": 4000,
+        "tenant": null
+      },
+      "room206": {
+        "landlord": "evelyn",
+        "price": 8000,
+        "tenant": null
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+dt {
+  font-weight: bold;
+  margin-top: 20px;
+}
+#profile-about {
+  white-space: pre-wrap;
+}
+dd {
+  margin: 6px 0 0;
+  overflow-wrap: anywhere;
+}

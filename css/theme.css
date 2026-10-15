@@ -1,0 +1,1419 @@
+/* Shared APSU appearance. Page styles own layout; this file owns the common theme. */
+:root {
+  --whisper-accent: #a94700;
+  --background: #d5edf5;
+  --button: #cbe7f2;
+  --hover: #addaea;
+  --active: #9fd5e7;
+  --border: #89bdd1;
+  --focus: #075978;
+  --text: #163f52;
+  --panel-border: var(--border);
+  --panel-inset: var(--button);
+  --apsu-panel: linear-gradient(150deg, #edf8fc, #d6eaf3);
+  --apsu-shadow: 0 5px 15px #2d6a8010;
+  color-scheme: light;
+  --muted: #50798d;
+  --input: #eaf6fb;
+  --panel-fill: #e3f2f8;
+  --page-gradient: linear-gradient(145deg, #d5edf5, #afd5e4);
+  --world-panel: linear-gradient(#a6d4e3, #c5e5ef);
+  --send-button: linear-gradient(#1596bc, #006b90);
+  --separator: #dceff6;
+  --system-fill: #cbe7f288;
+  --color-50: var(--background);
+  --color-100: var(--button);
+  --color-200: var(--hover);
+  --color-300: var(--active);
+  --color-600: var(--border);
+  --color-800: var(--focus);
+  --color-900: var(--text);
+}
+body.app-page {
+  max-width: none;
+  min-height: 100vh;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 22px;
+  background: var(--page-gradient);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+.app-page > header {
+  border-bottom: 1px solid var(--separator);
+  padding-bottom: 20px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+.app-page > header > p {
+  margin: 0;
+  font:
+    900 36px/1.2 'Arial Rounded MT Bold',
+    'Trebuchet MS',
+    sans-serif;
+  letter-spacing: 1px;
+  color: var(--focus);
+}
+.app-page button,
+.app-page .button-link,
+.app-page .account-menu summary {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--button);
+  color: var(--text);
+  padding: 10px 14px;
+  font:
+    13px Arial,
+    sans-serif;
+}
+.app-page button:hover,
+.app-page .button-link:hover,
+.app-page .account-menu summary:hover {
+  background: var(--hover);
+}
+.app-page button:active,
+.app-page .button-link:active {
+  background: var(--active);
+}
+.app-page button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.app-page :is(button, a, input, textarea, summary):focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+.app-page input,
+.app-page textarea {
+  background: var(--input);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.app-page .panel,
+.app-page .room-chat,
+.app-page .world-card,
+.app-page:not(.room-page) main > section,
+.app-page #world-content > section,
+.app-page #profile-content {
+  background: var(--apsu-panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--apsu-shadow);
+  padding: 22px;
+}
+.app-page:not(.room-page) main {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.app-page.auth-page main,
+.app-page.profile-page main {
+  max-width: 560px;
+  padding: 26px;
+  box-sizing: border-box;
+  background: var(--apsu-panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--apsu-shadow);
+}
+.app-page.auth-page form,
+.app-page.profile-page form {
+  max-width: none;
+}
+.app-page:not(.room-page) h1 {
+  font:
+    28px Georgia,
+    serif;
+}
+.app-page:not(.room-page) h2 {
+  font-size: 20px;
+  color: var(--text);
+}
+.app-page #profile-dialog,
+.app-page .account-options {
+  color: var(--text);
+  background: var(--apsu-panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--apsu-shadow);
+}
+.app-page #profile-dialog {
+  padding: 24px;
+  width: min(420px, calc(100vw - 32px));
+  box-sizing: border-box;
+}
+.app-page #profile-dialog::backdrop {
+  background: rgb(15 57 76 / 22%);
+}
+.app-page #profile-dialog h2 {
+  font:
+    24px Georgia,
+    serif;
+}
+.app-page #profile-dialog dt,
+.app-page #profile-content dt {
+  color: var(--muted);
+  font-size: 12px;
+}
+.app-page #profile-dialog dd,
+.app-page #profile-content dd {
+  margin: 6px 0 18px;
+}
+.app-page .character-card {
+  border: 1px solid var(--border);
+  background: var(--panel-inset);
+  border-radius: 10px;
+  padding: 14px;
+  margin: 12px 0;
+}
+.app-page #image-placeholder,
+.app-page #world-images img {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--panel-inset);
+}
+.app-page.room-page .panel,
+.app-page.room-page .room-chat {
+  padding: 16px;
+}
+.app-page.room-page .world-card {
+  background: var(--world-panel);
+}
+.app-page #chat-send {
+  background: var(--send-button);
+  color: white;
+}
+@media (max-width: 800px) {
+  body.app-page {
+    padding: 14px;
+  }
+  .app-page.auth-page main,
+  .app-page.profile-page main {
+    padding: 20px;
+  }
+}
+
+/* Fonts recorded in the Figma draft. Fallbacks remain usable while fonts load. */
+body.app-page {
+  font-family: 'Nunito Sans', 'Trebuchet MS', sans-serif;
+}
+.app-page button,
+.app-page .button-link,
+.app-page .account-menu summary,
+.app-page #chat-messages strong {
+  font-family: 'Nunito Sans', 'Trebuchet MS', sans-serif;
+}
+.app-page > header > p,
+.app-page .world-card strong {
+  font-family: 'Nunito Sans', 'Trebuchet MS', sans-serif;
+  font-weight: 900;
+}
+.app-page:not(.room-page) h1,
+.app-page .room-banner h1,
+.app-page #profile-dialog h2,
+.app-page #chat-messages p {
+  font-family: 'Lora', Georgia, serif;
+}
+.app-page .chat-tabs button[aria-pressed='true'] {
+  background: var(--active);
+  font-weight: 800;
+}
+#chat-scope {
+  font-size: 11px;
+  color: var(--muted);
+  margin: 8px 0 0;
+}
+.app-page #chat-heading.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  border: 0;
+}
+
+.app-page #room-characters button {
+  text-align: left;
+  width: 100%;
+  margin: 0;
+  padding: 7px 10px;
+  overflow-wrap: anywhere;
+}
+#preview-about {
+  white-space: pre-wrap;
+  max-height: 160px;
+  overflow-y: auto;
+}
+
+.app-page #chat-messages .system-message {
+  padding: 10px 12px;
+  border-left: 3px solid var(--border);
+  background: var(--system-fill);
+  border-radius: 6px;
+}
+.app-page #chat-messages .system-message p {
+  font:
+    13px/1.5 'Nunito Sans',
+    sans-serif;
+}
+
+/* A private whisper is marked without relying on color alone. */
+.whisper-marker {
+  color: var(--whisper-accent);
+  font-weight: 900;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --background: #25272a;
+  --button: #41454b;
+  --hover: #50555c;
+  --active: #60666e;
+  --border: #737a83;
+  --focus: #e2e5e9;
+  --text: #f1f2f4;
+  --muted: #bdc2c9;
+  --input: #292c30;
+  --panel-fill: #33373c;
+  --panel-inset: #383c42;
+  --page-gradient: linear-gradient(145deg, #303338, #202225);
+  --apsu-panel: linear-gradient(150deg, #3b3f45, #303338);
+  --world-panel: linear-gradient(#444950, #363a40);
+  --send-button: linear-gradient(#626972, #454b53);
+  --separator: #737a83;
+  --system-fill: #383c42;
+  --whisper-accent: #ffad66;
+  --apsu-shadow: 0 5px 15px #00000026;
+}
+:root[data-theme='parchment'] {
+  --background: #f2e6cf;
+  --button: #e4d1af;
+  --hover: #d7bf95;
+  --active: #cbae7f;
+  --border: #a58b64;
+  --focus: #664322;
+  --text: #3e3022;
+  --muted: #70604b;
+  --input: #fff8e9;
+  --panel-fill: #f6ebd5;
+  --panel-inset: #e9d9bc;
+  --page-gradient: linear-gradient(145deg, #f4e9d3, #dfcba7);
+  --apsu-panel: linear-gradient(150deg, #fff7e7, #eddfc4);
+  --world-panel: linear-gradient(#dfc79e, #efdfbf);
+  --send-button: linear-gradient(#8a6138, #654323);
+  --separator: #bdab8d;
+  --system-fill: #e9d9bc;
+  --whisper-accent: #9b4200;
+  --apsu-shadow: 0 5px 15px #63481d18;
+}
+.app-page a:not(.button-link) {
+  color: var(--focus);
+}
+.app-page input::placeholder,
+.app-page textarea::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+.app-page > header {
+  position: relative;
+}
+
+/* Theme chooser: ordinary buttons with visual previews, not a browser select. */
+.app-page .theme-picker {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0;
+  text-align: left;
+  z-index: 20;
+}
+.app-page .theme-picker > summary {
+  list-style: none;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 9px 12px;
+  background: var(--button);
+  color: var(--text);
+  font:
+    13px 'Nunito Sans',
+    sans-serif;
+}
+.theme-picker > summary::-webkit-details-marker {
+  display: none;
+}
+.app-page .theme-picker > summary:hover {
+  background: var(--hover);
+}
+.app-page .theme-options {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: min(310px, calc(100vw - 44px));
+  max-height: min(520px, 70vh);
+  overflow-y: auto;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--apsu-panel);
+  box-shadow: 0 8px 28px #0003;
+  box-sizing: border-box;
+}
+.app-page .theme-options button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin: 0 0 8px;
+  padding: 10px;
+  text-align: left;
+  white-space: normal;
+}
+.app-page .theme-options button:last-child {
+  margin-bottom: 0;
+}
+.app-page .theme-options button[aria-pressed='true'] {
+  outline: 2px solid var(--focus);
+  outline-offset: -3px;
+}
+.theme-option-copy {
+  display: grid;
+  gap: 4px;
+}
+.theme-option-copy small {
+  color: var(--muted);
+  font-size: 11px;
+}
+.theme-selected {
+  min-height: 14px;
+  font-weight: bold;
+}
+.theme-preview {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 5px;
+  flex: 0 0 95px;
+  height: 64px;
+  border-radius: 7px;
+  padding: 7px;
+  box-sizing: border-box;
+  background: var(--preview-bg);
+  border: 1px solid var(--preview-edge);
+}
+.theme-preview > span {
+  border-radius: 3px;
+  background: var(--preview-panel);
+  padding: 5px 3px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.theme-preview i {
+  display: block;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--preview-ink);
+  opacity: 0.6;
+}
+.theme-preview i:last-child {
+  width: 60%;
+}
+[data-theme-option='light'] {
+  --preview-bg: #afd5e4;
+  --preview-panel: #edf8fc;
+  --preview-ink: #163f52;
+  --preview-edge: #89bdd1;
+}
+[data-theme-option='dark'] {
+  --preview-bg: #25272a;
+  --preview-panel: #41454b;
+  --preview-ink: #f1f2f4;
+  --preview-edge: #737a83;
+}
+[data-theme-option='parchment'] {
+  --preview-bg: #dfcba7;
+  --preview-panel: #fff7e7;
+  --preview-ink: #3e3022;
+  --preview-edge: #a58b64;
+}
+@media (max-width: 1100px) {
+  .app-page .theme-picker {
+    position: relative;
+    grid-column: 1/-1;
+    grid-row: 2;
+    justify-self: center;
+    width: fit-content;
+    margin: 10px auto 0;
+  }
+  .app-page .theme-options {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+/* Consistent, accessible field feedback and confirmations. */
+.app-page .field-feedback {
+  grid-column: 1/-1;
+  margin: 5px 0 10px;
+  padding: 9px 12px;
+  border-left: 3px solid var(--focus);
+  border-radius: 6px;
+  background: var(--panel-inset);
+  color: var(--text);
+  font:
+    13px/1.5 'Nunito Sans',
+    sans-serif;
+}
+.app-page [aria-invalid='true'] {
+  outline: 2px solid var(--focus);
+  outline-offset: 1px;
+}
+.app-page .apsu-confirm {
+  width: min(420px, calc(100vw - 32px));
+  box-sizing: border-box;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--apsu-panel);
+  color: var(--text);
+  box-shadow: 0 12px 40px #0004;
+}
+.apsu-confirm::backdrop {
+  background: #0006;
+}
+.app-page .apsu-confirm h2 {
+  margin: 0 0 12px;
+  font:
+    24px 'Lora',
+    Georgia,
+    serif;
+}
+.app-page .apsu-confirm p {
+  line-height: 1.6;
+}
+.apsu-confirm-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+.app-page .apsu-confirm-actions button {
+  margin: 0;
+}
+
+.app-page #chat-form .field-feedback {
+  grid-row: 3;
+}
+.app-page #chat-form #chat-send {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.app-page #chat-messages .directed-marker {
+  color: #d0009b;
+  font-weight: 900;
+}
+.app-page #chat-messages li.action-message {
+  color: #805799;
+}
+.app-page #chat-messages li.action-message p {
+  color: #805799;
+}
+:root[data-theme='dark'] .app-page #chat-messages li.action-message {
+  color: #dac0f5;
+}
+:root[data-theme='dark'] .app-page #chat-messages li.action-message p {
+  color: #dac0f5;
+}
+:root[data-theme='dark'] .app-page #chat-messages .directed-marker {
+  color: #ff65d4;
+}
+
+/* Pointer clicks do not draw keyboard focus rings or select button labels. */
+:root[data-input-mode='pointer'] .app-page :is(button, a, summary, #chat-messages):focus {
+  outline: none;
+}
+.app-page :is(button, summary, .button-link) {
+  user-select: none;
+}
+.app-page #chat-messages li.whisper-message {
+  border-left: 0;
+  padding: 12px 0;
+}
+.profile-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.profile-tabs [aria-pressed='true'] {
+  background: var(--active);
+}
+.app-page #profile-dialog {
+  width: min(650px, calc(100vw - 32px));
+  max-height: 85vh;
+  overflow-y: auto;
+}
+.character-portrait {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+}
+.character-description {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.character-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin: 14px 0;
+}
+.character-image-card {
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--panel-inset);
+  min-width: 0;
+}
+.character-image-card p {
+  overflow-wrap: anywhere;
+}
+.character-image-card img {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.character-image-card button {
+  margin: 4px 0;
+  width: 100%;
+}
+.character-image-card .image-view {
+  padding: 0;
+}
+.character-profile-body label {
+  display: block;
+  margin: 12px 0;
+}
+.character-profile-body input,
+.character-profile-body textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+}
+.character-profile-body form {
+  max-width: none;
+}
+.character-profile-status {
+  line-height: 1.5;
+}
+.image-lightbox {
+  max-width: 90vw;
+  max-height: 90vh;
+  padding: 16px;
+  border: 1px solid var(--border);
+  background: var(--apsu-panel);
+  color: var(--text);
+  border-radius: 12px;
+}
+.image-lightbox img {
+  display: block;
+  max-width: 80vw;
+  max-height: 72vh;
+  object-fit: contain;
+}
+.image-lightbox::backdrop {
+  background: #0009;
+}
+#world-map {
+  overflow: auto;
+  padding: 12px 4px;
+}
+#world-map svg {
+  width: 100%;
+  min-width: 180px;
+  max-height: 250px;
+}
+#world-map .map-edge {
+  stroke: var(--border);
+  stroke-width: 2;
+}
+#world-map .map-node {
+  fill: var(--button);
+  stroke: var(--border);
+}
+#world-map .map-node.current {
+  fill: var(--active);
+  stroke: var(--focus);
+  stroke-width: 2;
+}
+#world-map text {
+  fill: var(--text);
+  font:
+    12px 'Nunito Sans',
+    sans-serif;
+}
+
+.player-badge {
+  display: inline-block;
+  margin: 0 6px 6px 0;
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--active);
+  color: var(--text);
+  font-weight: 700;
+}
+
+.app-page .staff-name {
+  color: #246b3f;
+}
+:root[data-theme='dark'] .app-page .staff-name {
+  color: #9fe0b1;
+}
+#surroundings-image {
+  width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+#room-objects article {
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin: 8px 0;
+}
+.player-badge svg {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+:root[data-theme='white'] {
+  color-scheme: light;
+  --background: #f6f6f5;
+  --button: #eeeeed;
+  --hover: #e1e1df;
+  --active: #d5d5d2;
+  --border: #bcbfbd;
+  --focus: #343e3c;
+  --text: #252c2b;
+  --muted: #5b6461;
+  --input: #fff;
+  --panel-fill: #fff;
+  --apsu-panel: linear-gradient(150deg, #fff, #f5f5f3);
+  --page-gradient: linear-gradient(145deg, #fff, #eeeeec);
+  --world-panel: linear-gradient(#e5e7e4, #fafaf8);
+  --send-button: linear-gradient(#5d6b66, #35433e);
+  --separator: #dedfdd;
+  --system-fill: #e9ece980;
+  --whisper-accent: #a94700;
+}
+:root[data-theme='forest'] {
+  color-scheme: dark;
+  --background: #182822;
+  --button: #30493e;
+  --hover: #405f50;
+  --active: #476c57;
+  --border: #688675;
+  --focus: #bce2ae;
+  --text: #e8f0e7;
+  --muted: #b3c7b7;
+  --input: #20352b;
+  --panel-fill: #253c30;
+  --apsu-panel: linear-gradient(150deg, #2b4437, #20352b);
+  --page-gradient: linear-gradient(145deg, #192d24, #101f19);
+  --world-panel: linear-gradient(#36513e, #233b2e);
+  --send-button: linear-gradient(#527b5e, #345640);
+  --separator: #3b5748;
+  --system-fill: #40634966;
+  --whisper-accent: #ffb36d;
+}
+[data-theme-option='white'] {
+  --preview-bg: #f5f5f3;
+  --preview-panel: #fff;
+  --preview-ink: #35433e;
+  --preview-edge: #bcbfbd;
+}
+[data-theme-option='forest'] {
+  --preview-bg: #182822;
+  --preview-panel: #30493e;
+  --preview-ink: #e8f0e7;
+  --preview-edge: #688675;
+}
+
+/* Midnight's stars belong to the page background, never to the UI or minigame. */
+:root[data-theme='midnight'] {
+  color-scheme: dark;
+  --background: #080f24;
+  --button: #1c3053;
+  --hover: #29436d;
+  --active: #355584;
+  --border: #536e99;
+  --focus: #b4d5ff;
+  --text: #e9f1ff;
+  --muted: #adc0df;
+  --input: #101d36;
+  --panel-fill: #14223c;
+  --apsu-panel: linear-gradient(150deg, #192b4b, #101c34);
+  --page-gradient: linear-gradient(145deg, #080f24, #101b35);
+  --world-panel: linear-gradient(#20395e, #142642);
+  --send-button: linear-gradient(#3b639f, #294b7e);
+  --separator: #30466a;
+  --system-fill: #213756;
+  --whisper-accent: #ffb36d;
+  --apsu-shadow: 0 5px 18px #0003;
+}
+[data-theme-option='midnight'] {
+  --preview-bg: #080f24;
+  --preview-panel: #1c3053;
+  --preview-ink: #e9f1ff;
+  --preview-edge: #536e99;
+}
+:root[data-theme='midnight'] body.app-page {
+  isolation: isolate;
+}
+:root[data-theme='midnight'] body.app-page::before,
+:root[data-theme='midnight'] body.app-page::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-repeat: repeat;
+  animation: apsu-starlight 7s ease-in-out infinite alternate;
+}
+:root[data-theme='midnight'] body.app-page::before {
+  background-image:
+    radial-gradient(circle at 17px 36px, #d9e9ff 0 1px, transparent 1.8px),
+    radial-gradient(circle at 142px 173px, #c5dbff 0 0.8px, transparent 1.6px),
+    radial-gradient(circle at 246px 71px, #e3efff 0 1px, transparent 2px);
+  background-size: 307px 251px;
+}
+:root[data-theme='midnight'] body.app-page::after {
+  background-image:
+    radial-gradient(circle at 93px 19px, #abcfff 0 1px, transparent 2px),
+    radial-gradient(circle at 211px 237px, #dceaff 0 0.8px, transparent 1.7px);
+  background-size: 373px 293px;
+  animation-duration: 11s;
+  animation-delay: -5s;
+}
+/* Opaque content islands also protect plain headings and text outside cards. */
+:root[data-theme='midnight'] body.app-page > :not(script):not(style):not(link):not(dialog) {
+  background-color: var(--background);
+}
+:root[data-theme='midnight'] .app-page #chat-messages li.action-message,
+:root[data-theme='midnight'] .app-page #chat-messages li.action-message p {
+  color: #dac0f5;
+}
+:root[data-theme='midnight'] .app-page #chat-messages .directed-marker {
+  color: #ff65d4;
+}
+:root[data-theme='midnight'] .app-page .staff-name {
+  color: #9fe0b1;
+}
+@keyframes apsu-starlight {
+  from {
+    opacity: 0.25;
+  }
+  to {
+    opacity: 0.8;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root[data-theme='midnight'] body.app-page::before,
+  :root[data-theme='midnight'] body.app-page::after {
+    animation: none;
+    opacity: 0.5;
+  }
+}
+
+/* Shared upload framing uses the current theme, including keyboard controls. */
+.apsu-image-crop {
+  box-sizing: border-box;
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--apsu-panel);
+  color: var(--text);
+  font: inherit;
+  box-shadow: var(--apsu-shadow);
+  width: min(460px, calc(100vw - 32px));
+  max-height: 90dvh;
+  overflow-y: auto;
+}
+.apsu-image-crop canvas {
+  display: block;
+  width: min(100%, 320px);
+  height: auto;
+  margin: auto;
+  touch-action: none;
+  cursor: grab;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.apsu-image-crop canvas:active {
+  cursor: grabbing;
+}
+.apsu-image-crop label {
+  display: block;
+  margin-top: 12px;
+}
+.apsu-image-crop input {
+  display: block;
+  width: 100%;
+}
+.crop-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+}
+.online-player-list {
+  list-style: none;
+  padding: 0;
+}
+.online-player-list li {
+  padding: 12px;
+  margin-block: 8px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+#chat-connection[data-state='offline'],
+#chat-connection[data-state='reconnecting'] {
+  font-weight: bold;
+}
+
+.apsu-image-crop::backdrop {
+  background: #08293988;
+}
+.apsu-image-crop h2 {
+  margin-top: 0;
+}
+.apsu-image-crop input[type='range'] {
+  padding: 0;
+  accent-color: var(--focus);
+}
+
+/* Shared account controls and the APSU home link keep the selected palette. */
+.app-page .apsu-home {
+  color: inherit;
+  font: inherit;
+  text-decoration: none;
+}
+.password-control {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: stretch;
+}
+.app-page .password-control input {
+  min-width: 0;
+}
+.app-page .password-toggle {
+  margin: 0;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+}
+.password-control .field-feedback {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+.player-banner {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 1;
+  object-fit: cover;
+  border-radius: 14px;
+  margin: 0 0 18px;
+  mask-image:
+    linear-gradient(to bottom, #000 70%, transparent),
+    linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+  mask-composite: intersect;
+}
+.player-banner-form {
+  padding-top: 12px;
+  margin-top: 18px;
+  border-top: 1px solid var(--border);
+}
+.player-banner-form p {
+  font-size: 0.85rem;
+}
+
+.item-visual {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px 8px 0;
+  flex-shrink: 0;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--panel-inset);
+  overflow: hidden;
+}
+.item-visual svg {
+  width: 27px;
+  height: 27px;
+}
+.item-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.item-inspect .item-visual {
+  width: 160px;
+  height: 160px;
+}
+.item-inspect .item-visual svg {
+  width: 80px;
+  height: 80px;
+}
+.ground-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-block: 10px;
+}
+.ground-item .item-visual {
+  margin: 0;
+}
+.item-icon-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.app-page .item-icon-options button {
+  margin: 0;
+  padding: 5px;
+  display: grid;
+  justify-items: center;
+  font-size: 11px;
+  min-width: 58px;
+}
+.item-icon-options button[aria-pressed='true'] {
+  background: var(--active);
+  border-color: var(--focus);
+}
+.item-icon-options svg {
+  width: 24px;
+  height: 24px;
+}
+.item-appearance-editor {
+  margin-block: 16px;
+}
+
+:root[data-theme='light'] {
+  --panel-fill: #edf7fa;
+  --panel-inset: #d8ecf1;
+  --apsu-panel: linear-gradient(165deg, #f6fcfd, #e1f0f5);
+  --page-gradient: linear-gradient(150deg, #e5f3f6, #badce7);
+  --panel-border: #91bbc7;
+}
+:root[data-theme='midnight'] {
+  --background: #0c1424;
+  --panel-fill: #152339;
+  --panel-inset: #1c2d46;
+  --apsu-panel: #152339;
+  --page-gradient: linear-gradient(160deg, #0c1424, #111e33);
+  --world-panel: #1b2d46;
+  --border: #57718c;
+  --panel-border: #57718c;
+  --apsu-shadow: 0 5px 18px #00000020;
+  --action-color: #d2b2ef;
+}
+
+/* Illustrated settings: vector landscapes, typography and architectural framing. */
+:root[data-theme='fantasy'] {
+  --background: #172923;
+  --page-gradient: linear-gradient(#172923, #182e27);
+  --button: #213a30;
+  --hover: #2d493b;
+  --active: #2d493b;
+  --border: #a59768;
+  --text: #ede7d3;
+  --muted: #b8c5ad;
+  --input: #182e27;
+  --focus: #c9b27a;
+  --panel-fill: #172923;
+  --apsu-panel: #172923;
+  --world-panel: #213a30;
+  --panel-inset: #213a30;
+  --panel-border: #a59768;
+  --separator: #a59768;
+  --system-fill: #213a30;
+  --send-button: #2d493b;
+  --whisper-accent: #ffbb76;
+  --roleplay-action: #d6a9ec;
+  --theme-scene: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221440%22%20height%3D%22320%22%20viewBox%3D%220%200%201440%20320%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22sky%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23132a2a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2340645b%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22mist%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%2392b39b%22%20stop-opacity%3D%220%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23bac9a7%22%20stop-opacity%3D%22.35%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cpath%20fill%3D%22url%28%23sky%29%22%20d%3D%22M0%200h1440v320H0z%22%2F%3E%3Ccircle%20cx%3D%221190%22%20cy%3D%2282%22%20r%3D%2252%22%20fill%3D%22%23ddd4a6%22%2F%3E%3Ccircle%20cx%3D%221173%22%20cy%3D%2267%22%20r%3D%2251%22%20fill%3D%22%23203d37%22%2F%3E%3Cpath%20d%3D%22M0%20224L95%20130%20171%20198%20274%20105%20364%20234%20430%20168%20555%20256%20716%20193%20869%20260%20958%20122%201102%20238%201240%20177%201440%20230V320H0%22%20fill%3D%22%23283f3b%22%2F%3E%3Cpath%20d%3D%22M0%20280L96%20240%20182%20270%20294%20203%20422%20275%20560%20225%20715%20291%20882%20237%201033%20277%201230%20217%201440%20272V320H0%22%20fill%3D%22%23172e2b%22%2F%3E%0A%3Cg%20fill%3D%22%23122623%22%20stroke%3D%22%2391a780%22%20stroke-width%3D%221%22%3E%3Cpath%20d%3D%22M105%20300V166h9v-17h12v17h11v-17h12v17h10v134zM174%20300V130h11v-18h13v18h12v-18h12v18h11v170zM138%20300v-89h52v89zM208%20300V203h88v97zM268%20208v-60l22-34%2022%2034v152h-44z%22%2F%3E%3Cpath%20d%3D%22M180%20129l23-55%2026%2055zM97%20167l35-47%2035%2047z%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23d8bc77%22%3E%3Cpath%20d%3D%22M195%20159h7v19h-7zM122%20188h6v15h-6zM285%20175h6v16h-6zM230%20223h5v15h-5zM155%20232h5v14h-5z%22%2F%3E%3C%2Fg%3E%0A%3Cpath%20d%3D%22M913%2095q-30-36-74-37l-35%2018%2029-2-9%2015%2026-8%2022%2013-62%2013-48-33-45%202%2025%2013-13%204%2050%2029%2053-1%2049%2012-8%2016%2022-6%207-17%2022-5%2033%206%2028-15-29%205-21-9%2027-3%2023-18-17%203-5-11-13%2013-22%201-16-37-41-32-50%201%2027%2019%2013%2031%2040%2027z%22%20fill%3D%22%230f2523%22%20stroke%3D%22%23758e70%22%20stroke-width%3D%221%22%2F%3E%0A%3Cpath%20d%3D%22M0%20250q400-52%20700%200t740-15v85H0%22%20fill%3D%22url%28%23mist%29%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23b8a56d%22%20stroke-opacity%3D%22.8%22%3E%3Cpath%20d%3D%22M24%2024h280M24%2024v95M1416%2024h-280M1416%2024v95M24%20296h220M1416%20296h-220%22%2F%3E%3Cpath%20d%3D%22M1263%20110l30-12%2030%2012v36q-4%2027-30%2041-26-14-30-41z%22%2F%3E%3Cpath%20d%3D%22M1252%20190l83-102M1250%2094l85%2096M1244%20174l20%2017M1321%20190l22-18%22%20stroke-width%3D%223%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+  color-scheme: dark;
+}
+:root[data-theme='fantasy'] body.app-page > header {
+  min-height: 190px;
+  box-sizing: border-box;
+  background-image: var(--theme-scene);
+  background-size: cover;
+  background-position: center;
+  border: 1px solid var(--border);
+  padding: 22px;
+  position: relative;
+}
+:root[data-theme='fantasy'] .theme-preview {
+  background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221440%22%20height%3D%22320%22%20viewBox%3D%220%200%201440%20320%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22sky%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23132a2a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2340645b%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22mist%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%2392b39b%22%20stop-opacity%3D%220%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23bac9a7%22%20stop-opacity%3D%22.35%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cpath%20fill%3D%22url%28%23sky%29%22%20d%3D%22M0%200h1440v320H0z%22%2F%3E%3Ccircle%20cx%3D%221190%22%20cy%3D%2282%22%20r%3D%2252%22%20fill%3D%22%23ddd4a6%22%2F%3E%3Ccircle%20cx%3D%221173%22%20cy%3D%2267%22%20r%3D%2251%22%20fill%3D%22%23203d37%22%2F%3E%3Cpath%20d%3D%22M0%20224L95%20130%20171%20198%20274%20105%20364%20234%20430%20168%20555%20256%20716%20193%20869%20260%20958%20122%201102%20238%201240%20177%201440%20230V320H0%22%20fill%3D%22%23283f3b%22%2F%3E%3Cpath%20d%3D%22M0%20280L96%20240%20182%20270%20294%20203%20422%20275%20560%20225%20715%20291%20882%20237%201033%20277%201230%20217%201440%20272V320H0%22%20fill%3D%22%23172e2b%22%2F%3E%0A%3Cg%20fill%3D%22%23122623%22%20stroke%3D%22%2391a780%22%20stroke-width%3D%221%22%3E%3Cpath%20d%3D%22M105%20300V166h9v-17h12v17h11v-17h12v17h10v134zM174%20300V130h11v-18h13v18h12v-18h12v18h11v170zM138%20300v-89h52v89zM208%20300V203h88v97zM268%20208v-60l22-34%2022%2034v152h-44z%22%2F%3E%3Cpath%20d%3D%22M180%20129l23-55%2026%2055zM97%20167l35-47%2035%2047z%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23d8bc77%22%3E%3Cpath%20d%3D%22M195%20159h7v19h-7zM122%20188h6v15h-6zM285%20175h6v16h-6zM230%20223h5v15h-5zM155%20232h5v14h-5z%22%2F%3E%3C%2Fg%3E%0A%3Cpath%20d%3D%22M913%2095q-30-36-74-37l-35%2018%2029-2-9%2015%2026-8%2022%2013-62%2013-48-33-45%202%2025%2013-13%204%2050%2029%2053-1%2049%2012-8%2016%2022-6%207-17%2022-5%2033%206%2028-15-29%205-21-9%2027-3%2023-18-17%203-5-11-13%2013-22%201-16-37-41-32-50%201%2027%2019%2013%2031%2040%2027z%22%20fill%3D%22%230f2523%22%20stroke%3D%22%23758e70%22%20stroke-width%3D%221%22%2F%3E%0A%3Cpath%20d%3D%22M0%20250q400-52%20700%200t740-15v85H0%22%20fill%3D%22url%28%23mist%29%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23b8a56d%22%20stroke-opacity%3D%22.8%22%3E%3Cpath%20d%3D%22M24%2024h280M24%2024v95M1416%2024h-280M1416%2024v95M24%20296h220M1416%20296h-220%22%2F%3E%3Cpath%20d%3D%22M1263%20110l30-12%2030%2012v36q-4%2027-30%2041-26-14-30-41z%22%2F%3E%3Cpath%20d%3D%22M1252%20190l83-102M1250%2094l85%2096M1244%20174l20%2017M1321%20190l22-18%22%20stroke-width%3D%223%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+  background-size: cover;
+}
+[data-theme-option='fantasy'] .theme-preview {
+  background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221440%22%20height%3D%22320%22%20viewBox%3D%220%200%201440%20320%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22sky%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23132a2a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2340645b%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22mist%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%2392b39b%22%20stop-opacity%3D%220%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23bac9a7%22%20stop-opacity%3D%22.35%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cpath%20fill%3D%22url%28%23sky%29%22%20d%3D%22M0%200h1440v320H0z%22%2F%3E%3Ccircle%20cx%3D%221190%22%20cy%3D%2282%22%20r%3D%2252%22%20fill%3D%22%23ddd4a6%22%2F%3E%3Ccircle%20cx%3D%221173%22%20cy%3D%2267%22%20r%3D%2251%22%20fill%3D%22%23203d37%22%2F%3E%3Cpath%20d%3D%22M0%20224L95%20130%20171%20198%20274%20105%20364%20234%20430%20168%20555%20256%20716%20193%20869%20260%20958%20122%201102%20238%201240%20177%201440%20230V320H0%22%20fill%3D%22%23283f3b%22%2F%3E%3Cpath%20d%3D%22M0%20280L96%20240%20182%20270%20294%20203%20422%20275%20560%20225%20715%20291%20882%20237%201033%20277%201230%20217%201440%20272V320H0%22%20fill%3D%22%23172e2b%22%2F%3E%0A%3Cg%20fill%3D%22%23122623%22%20stroke%3D%22%2391a780%22%20stroke-width%3D%221%22%3E%3Cpath%20d%3D%22M105%20300V166h9v-17h12v17h11v-17h12v17h10v134zM174%20300V130h11v-18h13v18h12v-18h12v18h11v170zM138%20300v-89h52v89zM208%20300V203h88v97zM268%20208v-60l22-34%2022%2034v152h-44z%22%2F%3E%3Cpath%20d%3D%22M180%20129l23-55%2026%2055zM97%20167l35-47%2035%2047z%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23d8bc77%22%3E%3Cpath%20d%3D%22M195%20159h7v19h-7zM122%20188h6v15h-6zM285%20175h6v16h-6zM230%20223h5v15h-5zM155%20232h5v14h-5z%22%2F%3E%3C%2Fg%3E%0A%3Cpath%20d%3D%22M913%2095q-30-36-74-37l-35%2018%2029-2-9%2015%2026-8%2022%2013-62%2013-48-33-45%202%2025%2013-13%204%2050%2029%2053-1%2049%2012-8%2016%2022-6%207-17%2022-5%2033%206%2028-15-29%205-21-9%2027-3%2023-18-17%203-5-11-13%2013-22%201-16-37-41-32-50%201%2027%2019%2013%2031%2040%2027z%22%20fill%3D%22%230f2523%22%20stroke%3D%22%23758e70%22%20stroke-width%3D%221%22%2F%3E%0A%3Cpath%20d%3D%22M0%20250q400-52%20700%200t740-15v85H0%22%20fill%3D%22url%28%23mist%29%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23b8a56d%22%20stroke-opacity%3D%22.8%22%3E%3Cpath%20d%3D%22M24%2024h280M24%2024v95M1416%2024h-280M1416%2024v95M24%20296h220M1416%20296h-220%22%2F%3E%3Cpath%20d%3D%22M1263%20110l30-12%2030%2012v36q-4%2027-30%2041-26-14-30-41z%22%2F%3E%3Cpath%20d%3D%22M1252%20190l83-102M1250%2094l85%2096M1244%20174l20%2017M1321%20190l22-18%22%20stroke-width%3D%223%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+  background-size: cover;
+}
+:root[data-theme='cyberpunk'] {
+  --background: #0c1220;
+  --page-gradient: linear-gradient(#0c1220, #101c2c);
+  --button: #192637;
+  --hover: #253b50;
+  --active: #253b50;
+  --border: #497086;
+  --text: #d8e9ed;
+  --muted: #9cb8c9;
+  --input: #101c2c;
+  --focus: #7cdee6;
+  --panel-fill: #0c1220;
+  --apsu-panel: #0c1220;
+  --world-panel: #192637;
+  --panel-inset: #192637;
+  --panel-border: #497086;
+  --separator: #497086;
+  --system-fill: #192637;
+  --send-button: #253b50;
+  --whisper-accent: #ffbb76;
+  --roleplay-action: #d6a9ec;
+  --theme-scene: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221440%22%20height%3D%22320%22%20viewBox%3D%220%200%201440%20320%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22night%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23090e20%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23243d55%22%2F%3E%3C%2FlinearGradient%3E%3Cpattern%20id%3D%22windows%22%20width%3D%2216%22%20height%3D%2220%22%20patternUnits%3D%22userSpaceOnUse%22%3E%3Cpath%20d%3D%22M4%205h3v8H4z%22%20fill%3D%22%2363d0d7%22%20opacity%3D%22.42%22%2F%3E%3C%2Fpattern%3E%3C%2Fdefs%3E%3Cpath%20fill%3D%22url%28%23night%29%22%20d%3D%22M0%200h1440v320H0z%22%2F%3E%3Ccircle%20cx%3D%221060%22%20cy%3D%2277%22%20r%3D%2254%22%20fill%3D%22%23ce527b%22%20opacity%3D%22.35%22%2F%3E%3Cpath%20d%3D%22M0%20270h1440M0%20282h1440M0%20298h1440%22%20stroke%3D%22%2355abb8%22%20opacity%3D%22.2%22%2F%3E%3Cpath%20d%3D%22M0%20320V160h82v160z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M8%20320V174h66v146z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M41%20160v-18M0%20165h82%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M68%20185v65%22%20stroke%3D%22%23ed698e%22%20stroke-width%3D%225%22%2F%3E%3Cpath%20d%3D%22M68%20320V100h57v220z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M76%20320V114h41v206z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M96%20100v-18M68%20105h57%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M144%20320V170h95v150z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M152%20320V184h79v136z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M191%20170v-18M144%20175h95%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M252%20320V90h70v230z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M260%20320V104h54v216z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M287%2090v-18M252%2095h70%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M308%20115v65%22%20stroke%3D%22%23ed698e%22%20stroke-width%3D%225%22%2F%3E%3Cpath%20d%3D%22M340%20320V200h112v120z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M348%20320V214h96v106z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M396%20200v-18M340%20205h112%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M478%20320V145h60v175z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M486%20320V159h44v161z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M508%20145v-18M478%20150h60%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M564%20320V100h90v220z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M572%20320V114h74v206z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M609%20100v-18M564%20105h90%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M640%20125v65%22%20stroke%3D%22%23ed698e%22%20stroke-width%3D%225%22%2F%3E%3Cpath%20d%3D%22M680%20320V186h76v134z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M688%20320V200h60v120z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M718%20186v-18M680%20191h76%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M781%20320V146h96v174z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M789%20320V160h80v160z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M829%20146v-18M781%20151h96%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M895%20320V60h72v260z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M903%20320V74h56v246z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M931%2060v-18M895%2065h72%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M953%2085v65%22%20stroke%3D%22%23ed698e%22%20stroke-width%3D%225%22%2F%3E%3Cpath%20d%3D%22M985%20320V160h104v160z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M993%20320V174h88v146z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M1037%20160v-18M985%20165h104%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M1110%20320V116h60v204z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M1118%20320V130h44v190z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M1140%20116v-18M1110%20121h60%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M1191%20320V184h82v136z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M1199%20320V198h66v122z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M1232%20184v-18M1191%20189h82%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M1259%20209v65%22%20stroke%3D%22%23ed698e%22%20stroke-width%3D%225%22%2F%3E%3Cpath%20d%3D%22M1294%20320V73h87v247z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M1302%20320V87h71v233z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M1337%2073v-18M1294%2078h87%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M1400%20320V136h70v184z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M1408%20320V150h54v170z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M1435%20136v-18M1400%20141h70%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%2373c7d1%22%3E%3Cpath%20d%3D%22M24%2024h180l12%2012h155M1416%2024h-180l-12%2012h-155%22%2F%3E%3Cpath%20d%3D%22M48%2092v22h45M1392%2092v22h-45%22%20opacity%3D%22.6%22%2F%3E%3C%2Fg%3E%3Cg%20stroke%3D%22%2376aabb%22%20opacity%3D%22.17%22%3E%3Cpath%20d%3D%22M0%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M63%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M126%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M189%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M252%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M315%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M378%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M441%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M504%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M567%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M630%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M693%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M756%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M819%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M882%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M945%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M1008%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M1071%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M1134%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M1197%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M1260%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M1323%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M1386%200l-55%20320%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+  color-scheme: dark;
+}
+:root[data-theme='cyberpunk'] body.app-page > header {
+  min-height: 190px;
+  box-sizing: border-box;
+  background-image: var(--theme-scene);
+  background-size: cover;
+  background-position: center;
+  border: 1px solid var(--border);
+  padding: 22px;
+  position: relative;
+}
+:root[data-theme='cyberpunk'] .theme-preview {
+  background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221440%22%20height%3D%22320%22%20viewBox%3D%220%200%201440%20320%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22night%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23090e20%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23243d55%22%2F%3E%3C%2FlinearGradient%3E%3Cpattern%20id%3D%22windows%22%20width%3D%2216%22%20height%3D%2220%22%20patternUnits%3D%22userSpaceOnUse%22%3E%3Cpath%20d%3D%22M4%205h3v8H4z%22%20fill%3D%22%2363d0d7%22%20opacity%3D%22.42%22%2F%3E%3C%2Fpattern%3E%3C%2Fdefs%3E%3Cpath%20fill%3D%22url%28%23night%29%22%20d%3D%22M0%200h1440v320H0z%22%2F%3E%3Ccircle%20cx%3D%221060%22%20cy%3D%2277%22%20r%3D%2254%22%20fill%3D%22%23ce527b%22%20opacity%3D%22.35%22%2F%3E%3Cpath%20d%3D%22M0%20270h1440M0%20282h1440M0%20298h1440%22%20stroke%3D%22%2355abb8%22%20opacity%3D%22.2%22%2F%3E%3Cpath%20d%3D%22M0%20320V160h82v160z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M8%20320V174h66v146z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M41%20160v-18M0%20165h82%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M68%20185v65%22%20stroke%3D%22%23ed698e%22%20stroke-width%3D%225%22%2F%3E%3Cpath%20d%3D%22M68%20320V100h57v220z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M76%20320V114h41v206z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M96%20100v-18M68%20105h57%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M144%20320V170h95v150z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M152%20320V184h79v136z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M191%20170v-18M144%20175h95%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M252%20320V90h70v230z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M260%20320V104h54v216z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M287%2090v-18M252%2095h70%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M308%20115v65%22%20stroke%3D%22%23ed698e%22%20stroke-width%3D%225%22%2F%3E%3Cpath%20d%3D%22M340%20320V200h112v120z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M348%20320V214h96v106z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M396%20200v-18M340%20205h112%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M478%20320V145h60v175z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M486%20320V159h44v161z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M508%20145v-18M478%20150h60%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M564%20320V100h90v220z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M572%20320V114h74v206z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M609%20100v-18M564%20105h90%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M640%20125v65%22%20stroke%3D%22%23ed698e%22%20stroke-width%3D%225%22%2F%3E%3Cpath%20d%3D%22M680%20320V186h76v134z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M688%20320V200h60v120z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M718%20186v-18M680%20191h76%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M781%20320V146h96v174z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M789%20320V160h80v160z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M829%20146v-18M781%20151h96%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M895%20320V60h72v260z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M903%20320V74h56v246z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M931%2060v-18M895%2065h72%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M953%2085v65%22%20stroke%3D%22%23ed698e%22%20stroke-width%3D%225%22%2F%3E%3Cpath%20d%3D%22M985%20320V160h104v160z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M993%20320V174h88v146z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M1037%20160v-18M985%20165h104%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M1110%20320V116h60v204z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M1118%20320V130h44v190z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M1140%20116v-18M1110%20121h60%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M1191%20320V184h82v136z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M1199%20320V198h66v122z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M1232%20184v-18M1191%20189h82%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M1259%20209v65%22%20stroke%3D%22%23ed698e%22%20stroke-width%3D%225%22%2F%3E%3Cpath%20d%3D%22M1294%20320V73h87v247z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M1302%20320V87h71v233z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M1337%2073v-18M1294%2078h87%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M1400%20320V136h70v184z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M1408%20320V150h54v170z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M1435%20136v-18M1400%20141h70%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%2373c7d1%22%3E%3Cpath%20d%3D%22M24%2024h180l12%2012h155M1416%2024h-180l-12%2012h-155%22%2F%3E%3Cpath%20d%3D%22M48%2092v22h45M1392%2092v22h-45%22%20opacity%3D%22.6%22%2F%3E%3C%2Fg%3E%3Cg%20stroke%3D%22%2376aabb%22%20opacity%3D%22.17%22%3E%3Cpath%20d%3D%22M0%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M63%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M126%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M189%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M252%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M315%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M378%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M441%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M504%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M567%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M630%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M693%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M756%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M819%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M882%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M945%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M1008%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M1071%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M1134%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M1197%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M1260%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M1323%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M1386%200l-55%20320%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+  background-size: cover;
+}
+[data-theme-option='cyberpunk'] .theme-preview {
+  background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221440%22%20height%3D%22320%22%20viewBox%3D%220%200%201440%20320%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22night%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23090e20%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23243d55%22%2F%3E%3C%2FlinearGradient%3E%3Cpattern%20id%3D%22windows%22%20width%3D%2216%22%20height%3D%2220%22%20patternUnits%3D%22userSpaceOnUse%22%3E%3Cpath%20d%3D%22M4%205h3v8H4z%22%20fill%3D%22%2363d0d7%22%20opacity%3D%22.42%22%2F%3E%3C%2Fpattern%3E%3C%2Fdefs%3E%3Cpath%20fill%3D%22url%28%23night%29%22%20d%3D%22M0%200h1440v320H0z%22%2F%3E%3Ccircle%20cx%3D%221060%22%20cy%3D%2277%22%20r%3D%2254%22%20fill%3D%22%23ce527b%22%20opacity%3D%22.35%22%2F%3E%3Cpath%20d%3D%22M0%20270h1440M0%20282h1440M0%20298h1440%22%20stroke%3D%22%2355abb8%22%20opacity%3D%22.2%22%2F%3E%3Cpath%20d%3D%22M0%20320V160h82v160z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M8%20320V174h66v146z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M41%20160v-18M0%20165h82%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M68%20185v65%22%20stroke%3D%22%23ed698e%22%20stroke-width%3D%225%22%2F%3E%3Cpath%20d%3D%22M68%20320V100h57v220z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M76%20320V114h41v206z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M96%20100v-18M68%20105h57%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M144%20320V170h95v150z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M152%20320V184h79v136z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M191%20170v-18M144%20175h95%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M252%20320V90h70v230z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M260%20320V104h54v216z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M287%2090v-18M252%2095h70%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M308%20115v65%22%20stroke%3D%22%23ed698e%22%20stroke-width%3D%225%22%2F%3E%3Cpath%20d%3D%22M340%20320V200h112v120z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M348%20320V214h96v106z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M396%20200v-18M340%20205h112%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M478%20320V145h60v175z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M486%20320V159h44v161z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M508%20145v-18M478%20150h60%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M564%20320V100h90v220z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M572%20320V114h74v206z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M609%20100v-18M564%20105h90%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M640%20125v65%22%20stroke%3D%22%23ed698e%22%20stroke-width%3D%225%22%2F%3E%3Cpath%20d%3D%22M680%20320V186h76v134z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M688%20320V200h60v120z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M718%20186v-18M680%20191h76%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M781%20320V146h96v174z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M789%20320V160h80v160z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M829%20146v-18M781%20151h96%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M895%20320V60h72v260z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M903%20320V74h56v246z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M931%2060v-18M895%2065h72%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M953%2085v65%22%20stroke%3D%22%23ed698e%22%20stroke-width%3D%225%22%2F%3E%3Cpath%20d%3D%22M985%20320V160h104v160z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M993%20320V174h88v146z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M1037%20160v-18M985%20165h104%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M1110%20320V116h60v204z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M1118%20320V130h44v190z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M1140%20116v-18M1110%20121h60%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M1191%20320V184h82v136z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M1199%20320V198h66v122z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M1232%20184v-18M1191%20189h82%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M1259%20209v65%22%20stroke%3D%22%23ed698e%22%20stroke-width%3D%225%22%2F%3E%3Cpath%20d%3D%22M1294%20320V73h87v247z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M1302%20320V87h71v233z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M1337%2073v-18M1294%2078h87%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M1400%20320V136h70v184z%22%20fill%3D%22%23101d2c%22%20stroke%3D%22%23416575%22%2F%3E%3Cpath%20d%3D%22M1408%20320V150h54v170z%22%20fill%3D%22url%28%23windows%29%22%2F%3E%3Cpath%20d%3D%22M1435%20136v-18M1400%20141h70%22%20stroke%3D%22%2369b9bd%22%20opacity%3D%22.5%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%2373c7d1%22%3E%3Cpath%20d%3D%22M24%2024h180l12%2012h155M1416%2024h-180l-12%2012h-155%22%2F%3E%3Cpath%20d%3D%22M48%2092v22h45M1392%2092v22h-45%22%20opacity%3D%22.6%22%2F%3E%3C%2Fg%3E%3Cg%20stroke%3D%22%2376aabb%22%20opacity%3D%22.17%22%3E%3Cpath%20d%3D%22M0%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M63%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M126%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M189%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M252%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M315%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M378%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M441%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M504%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M567%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M630%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M693%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M756%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M819%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M882%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M945%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M1008%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M1071%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M1134%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M1197%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M1260%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M1323%200l-55%20320%22%2F%3E%3Cpath%20d%3D%22M1386%200l-55%20320%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+  background-size: cover;
+}
+:root[data-theme='deco'] {
+  --background: #14282a;
+  --page-gradient: linear-gradient(#14282a, #1b3033);
+  --button: #233d3f;
+  --hover: #314e50;
+  --active: #314e50;
+  --border: #a28a5d;
+  --text: #eee6d0;
+  --muted: #c7bda3;
+  --input: #1b3033;
+  --focus: #e3c78d;
+  --panel-fill: #14282a;
+  --apsu-panel: #14282a;
+  --world-panel: #233d3f;
+  --panel-inset: #233d3f;
+  --panel-border: #a28a5d;
+  --separator: #a28a5d;
+  --system-fill: #233d3f;
+  --send-button: #314e50;
+  --whisper-accent: #ffbb76;
+  --roleplay-action: #d6a9ec;
+  --theme-scene: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221440%22%20height%3D%22320%22%20viewBox%3D%220%200%201440%20320%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22ink%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%2313272b%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23254247%22%2F%3E%3C%2FlinearGradient%3E%3Cpattern%20id%3D%22ribs%22%20width%3D%2212%22%20height%3D%2210%22%20patternUnits%3D%22userSpaceOnUse%22%3E%3Cpath%20d%3D%22M5%200v10%22%20stroke%3D%22%23c5ad74%22%20stroke-opacity%3D%22.25%22%2F%3E%3C%2Fpattern%3E%3C%2Fdefs%3E%3Cpath%20fill%3D%22url%28%23ink%29%22%20d%3D%22M0%200h1440v320H0z%22%2F%3E%3Cg%20stroke%3D%22%23b7a16b%22%20stroke-opacity%3D%22.16%22%3E%3Cpath%20d%3D%22M720%20290L-600%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L-505%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L-410%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L-315%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L-220%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L-125%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L-30%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L65%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L160%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L255%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L350%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L445%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L540%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L635%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L730%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L825%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L920%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1015%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1110%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1205%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1300%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1395%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1490%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1585%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1680%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1775%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1870%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1965%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L2060%200%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M10%20320V255h18.0V230h17.0V212h15.0V200l15.0%2012v18h17.0v25h18.0V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M20%20320V268h80V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M105%20320V205h19.8V180h18.700000000000003V162h16.5V150l16.5%2012v18h18.700000000000003v25h19.8V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M115%20320V218h90V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M225%20320V155h15.84V130h14.96V112h13.2V100l13.2%2012v18h14.96v25h15.84V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M235%20320V168h68V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M329%20320V225h23.4V200h22.1V182h19.5V170l19.5%2012v18h22.1v25h23.4V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M339%20320V238h110V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M480%20320V95h16.919999999999998V70h15.98V52h14.1V40l14.1%2012v18h15.98v25h16.919999999999998V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M490%20320V108h74V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M588%20320V190h19.439999999999998V165h18.360000000000003V147h16.2V135l16.2%2012v18h18.360000000000003v25h19.439999999999998V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M598%20320V203h88V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M744%20320V190h19.439999999999998V165h18.360000000000003V147h16.2V135l16.2%2012v18h18.360000000000003v25h19.439999999999998V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M754%20320V203h88V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M866%20320V95h16.919999999999998V70h15.98V52h14.1V40l14.1%2012v18h15.98v25h16.919999999999998V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M876%20320V108h74V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M981%20320V225h23.4V200h22.1V182h19.5V170l19.5%2012v18h22.1v25h23.4V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M991%20320V238h110V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M1127%20320V155h15.84V130h14.96V112h13.2V100l13.2%2012v18h14.96v25h15.84V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M1137%20320V168h68V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M1225%20320V205h19.8V180h18.700000000000003V162h16.5V150l16.5%2012v18h18.700000000000003v25h19.8V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M1235%20320V218h90V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M1330%20320V255h18.0V230h17.0V212h15.0V200l15.0%2012v18h17.0v25h18.0V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M1340%20320V268h80V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cg%20stroke%3D%22%23d6bb7e%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M24%2024h430l15%2015h502l15-15h430v272h-210M24%20296h210M36%2036v248h186M1404%2036v248h-186%22%2F%3E%3Cpath%20d%3D%22M675%20238l45-40%2045%2040-45%2040zM688%20238l32-28%2032%2028-32%2028z%22%2F%3E%3Cpath%20d%3D%22M640%20238h-86M800%20238h86M720%20198v-30%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+  color-scheme: dark;
+}
+:root[data-theme='deco'] body.app-page > header {
+  min-height: 190px;
+  box-sizing: border-box;
+  background-image: var(--theme-scene);
+  background-size: cover;
+  background-position: center;
+  border: 1px solid var(--border);
+  padding: 22px;
+  position: relative;
+}
+:root[data-theme='deco'] .theme-preview {
+  background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221440%22%20height%3D%22320%22%20viewBox%3D%220%200%201440%20320%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22ink%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%2313272b%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23254247%22%2F%3E%3C%2FlinearGradient%3E%3Cpattern%20id%3D%22ribs%22%20width%3D%2212%22%20height%3D%2210%22%20patternUnits%3D%22userSpaceOnUse%22%3E%3Cpath%20d%3D%22M5%200v10%22%20stroke%3D%22%23c5ad74%22%20stroke-opacity%3D%22.25%22%2F%3E%3C%2Fpattern%3E%3C%2Fdefs%3E%3Cpath%20fill%3D%22url%28%23ink%29%22%20d%3D%22M0%200h1440v320H0z%22%2F%3E%3Cg%20stroke%3D%22%23b7a16b%22%20stroke-opacity%3D%22.16%22%3E%3Cpath%20d%3D%22M720%20290L-600%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L-505%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L-410%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L-315%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L-220%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L-125%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L-30%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L65%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L160%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L255%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L350%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L445%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L540%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L635%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L730%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L825%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L920%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1015%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1110%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1205%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1300%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1395%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1490%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1585%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1680%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1775%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1870%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1965%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L2060%200%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M10%20320V255h18.0V230h17.0V212h15.0V200l15.0%2012v18h17.0v25h18.0V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M20%20320V268h80V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M105%20320V205h19.8V180h18.700000000000003V162h16.5V150l16.5%2012v18h18.700000000000003v25h19.8V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M115%20320V218h90V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M225%20320V155h15.84V130h14.96V112h13.2V100l13.2%2012v18h14.96v25h15.84V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M235%20320V168h68V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M329%20320V225h23.4V200h22.1V182h19.5V170l19.5%2012v18h22.1v25h23.4V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M339%20320V238h110V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M480%20320V95h16.919999999999998V70h15.98V52h14.1V40l14.1%2012v18h15.98v25h16.919999999999998V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M490%20320V108h74V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M588%20320V190h19.439999999999998V165h18.360000000000003V147h16.2V135l16.2%2012v18h18.360000000000003v25h19.439999999999998V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M598%20320V203h88V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M744%20320V190h19.439999999999998V165h18.360000000000003V147h16.2V135l16.2%2012v18h18.360000000000003v25h19.439999999999998V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M754%20320V203h88V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M866%20320V95h16.919999999999998V70h15.98V52h14.1V40l14.1%2012v18h15.98v25h16.919999999999998V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M876%20320V108h74V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M981%20320V225h23.4V200h22.1V182h19.5V170l19.5%2012v18h22.1v25h23.4V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M991%20320V238h110V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M1127%20320V155h15.84V130h14.96V112h13.2V100l13.2%2012v18h14.96v25h15.84V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M1137%20320V168h68V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M1225%20320V205h19.8V180h18.700000000000003V162h16.5V150l16.5%2012v18h18.700000000000003v25h19.8V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M1235%20320V218h90V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M1330%20320V255h18.0V230h17.0V212h15.0V200l15.0%2012v18h17.0v25h18.0V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M1340%20320V268h80V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cg%20stroke%3D%22%23d6bb7e%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M24%2024h430l15%2015h502l15-15h430v272h-210M24%20296h210M36%2036v248h186M1404%2036v248h-186%22%2F%3E%3Cpath%20d%3D%22M675%20238l45-40%2045%2040-45%2040zM688%20238l32-28%2032%2028-32%2028z%22%2F%3E%3Cpath%20d%3D%22M640%20238h-86M800%20238h86M720%20198v-30%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+  background-size: cover;
+}
+[data-theme-option='deco'] .theme-preview {
+  background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221440%22%20height%3D%22320%22%20viewBox%3D%220%200%201440%20320%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22ink%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%2313272b%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23254247%22%2F%3E%3C%2FlinearGradient%3E%3Cpattern%20id%3D%22ribs%22%20width%3D%2212%22%20height%3D%2210%22%20patternUnits%3D%22userSpaceOnUse%22%3E%3Cpath%20d%3D%22M5%200v10%22%20stroke%3D%22%23c5ad74%22%20stroke-opacity%3D%22.25%22%2F%3E%3C%2Fpattern%3E%3C%2Fdefs%3E%3Cpath%20fill%3D%22url%28%23ink%29%22%20d%3D%22M0%200h1440v320H0z%22%2F%3E%3Cg%20stroke%3D%22%23b7a16b%22%20stroke-opacity%3D%22.16%22%3E%3Cpath%20d%3D%22M720%20290L-600%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L-505%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L-410%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L-315%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L-220%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L-125%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L-30%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L65%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L160%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L255%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L350%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L445%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L540%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L635%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L730%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L825%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L920%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1015%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1110%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1205%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1300%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1395%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1490%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1585%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1680%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1775%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1870%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L1965%200%22%2F%3E%3Cpath%20d%3D%22M720%20290L2060%200%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M10%20320V255h18.0V230h17.0V212h15.0V200l15.0%2012v18h17.0v25h18.0V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M20%20320V268h80V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M105%20320V205h19.8V180h18.700000000000003V162h16.5V150l16.5%2012v18h18.700000000000003v25h19.8V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M115%20320V218h90V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M225%20320V155h15.84V130h14.96V112h13.2V100l13.2%2012v18h14.96v25h15.84V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M235%20320V168h68V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M329%20320V225h23.4V200h22.1V182h19.5V170l19.5%2012v18h22.1v25h23.4V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M339%20320V238h110V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M480%20320V95h16.919999999999998V70h15.98V52h14.1V40l14.1%2012v18h15.98v25h16.919999999999998V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M490%20320V108h74V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M588%20320V190h19.439999999999998V165h18.360000000000003V147h16.2V135l16.2%2012v18h18.360000000000003v25h19.439999999999998V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M598%20320V203h88V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M744%20320V190h19.439999999999998V165h18.360000000000003V147h16.2V135l16.2%2012v18h18.360000000000003v25h19.439999999999998V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M754%20320V203h88V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M866%20320V95h16.919999999999998V70h15.98V52h14.1V40l14.1%2012v18h15.98v25h16.919999999999998V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M876%20320V108h74V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M981%20320V225h23.4V200h22.1V182h19.5V170l19.5%2012v18h22.1v25h23.4V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M991%20320V238h110V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M1127%20320V155h15.84V130h14.96V112h13.2V100l13.2%2012v18h14.96v25h15.84V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M1137%20320V168h68V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M1225%20320V205h19.8V180h18.700000000000003V162h16.5V150l16.5%2012v18h18.700000000000003v25h19.8V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M1235%20320V218h90V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cpath%20d%3D%22M1330%20320V255h18.0V230h17.0V212h15.0V200l15.0%2012v18h17.0v25h18.0V320z%22%20fill%3D%22%23152e32%22%20stroke%3D%22%23b7a16b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M1340%20320V268h80V320%22%20fill%3D%22url%28%23ribs%29%22%2F%3E%3Cg%20stroke%3D%22%23d6bb7e%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M24%2024h430l15%2015h502l15-15h430v272h-210M24%20296h210M36%2036v248h186M1404%2036v248h-186%22%2F%3E%3Cpath%20d%3D%22M675%20238l45-40%2045%2040-45%2040zM688%20238l32-28%2032%2028-32%2028z%22%2F%3E%3Cpath%20d%3D%22M640%20238h-86M800%20238h86M720%20198v-30%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+  background-size: cover;
+}
+
+:root:is([data-theme='fantasy'], [data-theme='deco']) .app-page h1,
+:root:is([data-theme='fantasy'], [data-theme='deco']) .app-page h2 {
+  font-family: 'Literata', Georgia, serif;
+  font-weight: 500;
+}
+:root[data-theme='fantasy'] .app-page :is(.room-card, .room-chat) {
+  border-radius: 16px 16px 5px 5px;
+  border-top: 3px double var(--border);
+  box-shadow: 0 5px 20px #0003;
+}
+:root[data-theme='fantasy'] .app-page button {
+  border-radius: 4px 12px 4px 12px;
+}
+:root[data-theme='deco'] .app-page :is(.room-card, .room-chat) {
+  border-radius: 0;
+  border: 1px solid var(--border);
+  outline: 1px solid #a28a5d40;
+  outline-offset: -5px;
+}
+:root[data-theme='deco'] .app-page :is(button, .button-link) {
+  border-radius: 0;
+  letter-spacing: 0.035em;
+  border-style: double;
+  border-width: 3px;
+}
+:root[data-theme='deco'] .app-page h2 {
+  letter-spacing: 0.06em;
+  font-variant: small-caps;
+}
+:root[data-theme='cyberpunk'] .app-page :is(.room-card, .room-chat) {
+  border-radius: 2px 14px 2px 2px;
+  border-top: 2px solid var(--focus);
+  box-shadow: inset 3px 0 #416575;
+}
+:root[data-theme='cyberpunk'] .app-page h2 {
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+:root[data-theme='cyberpunk'] .app-page :is(button, .button-link) {
+  border-radius: 2px 9px 2px 2px;
+}
+:root:is([data-theme='fantasy'], [data-theme='cyberpunk'], [data-theme='deco'])
+  .app-page
+  > header
+  .apsu-home {
+  background: var(--background);
+  padding: 5px 18px;
+  border: 1px solid var(--border);
+}
+:root:is([data-theme='fantasy'], [data-theme='cyberpunk'], [data-theme='deco'])
+  .theme-preview
+  :is(.preview-chat, .preview-sidebar) {
+  opacity: 0.55;
+}
+.app-page select,
+.app-page select option {
+  color: var(--text);
+  background-color: var(--input);
+}
+@media (max-width: 650px) {
+  :root:is([data-theme='fantasy'], [data-theme='cyberpunk'], [data-theme='deco'])
+    body.app-page
+    > header {
+    min-height: 240px;
+    background-position: center bottom;
+  }
+}
+
+/* Connection explorer: full labels and explicit adjacency, independent of map coordinates. */
+.room-explorer {
+  display: grid;
+  gap: 1rem;
+  text-align: left;
+}
+.room-explorer-focus {
+  border-inline-start: 3px solid currentColor;
+  padding: 0.75rem 1rem;
+}
+.room-explorer-focus h3 {
+  margin: 0.25rem 0;
+  overflow-wrap: anywhere;
+}
+.room-explorer-exits,
+.room-explorer-directory {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: 0.6rem;
+}
+.room-explorer button {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: left;
+  width: 100%;
+  margin: 0;
+}
+.room-explorer-directory section {
+  display: grid;
+  align-content: start;
+  gap: 0.4rem;
+}
+.room-explorer-directory h4 {
+  margin: 0.5rem 0;
+}
+.room-explorer button[aria-pressed='true'] {
+  outline: 2px solid currentColor;
+  outline-offset: -3px;
+}
+/* Architectural schematic: room walls, open thresholds, and routed passages. */
+.floorplan {
+  --plan-floor: var(--panel-fill, #203b39);
+  --plan-ink: currentColor;
+  text-align: left;
+}
+.floorplan-viewport {
+  overflow: auto;
+  max-height: 65vh;
+  background: rgba(0, 0, 0, 0.08);
+  border: 1px solid currentColor;
+  touch-action: pan-x pan-y;
+  cursor: grab;
+}
+.floorplan svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 180px;
+}
+.floor-grid {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 0.5;
+  opacity: 0.09;
+}
+.floor-corridor-wall {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 24;
+  opacity: 0.55;
+  stroke-linejoin: round;
+}
+.floor-corridor {
+  fill: none;
+  stroke: var(--plan-floor);
+  stroke-width: 19;
+  stroke-linejoin: round;
+}
+.floor-wall {
+  fill: var(--plan-floor);
+  stroke: currentColor;
+  stroke-width: 4;
+}
+.floor-surface {
+  fill: currentColor;
+  fill-opacity: 0.055;
+  stroke: currentColor;
+  stroke-width: 0.7;
+}
+.floor-door {
+  stroke: var(--plan-floor);
+  stroke-width: 7;
+}
+.floor-label {
+  fill: currentColor;
+  font-size: 12px;
+  font-family: inherit;
+  pointer-events: none;
+}
+.floor-position {
+  fill: currentColor;
+}
+.floor-room[role='button'] {
+  cursor: pointer;
+}
+.floor-room.selected .floor-surface,
+.floor-room.current .floor-surface {
+  fill-opacity: 0.2;
+}
+.floor-room:focus .floor-wall,
+.floor-room.selected .floor-wall {
+  stroke-width: 6;
+}
+.traced .floor-corridor-wall {
+  opacity: 1;
+}
+.floorplan-tools {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 0.6rem;
+}
+.floorplan-tools button {
+  width: auto;
+  min-width: 2.6rem;
+  padding: 0.35rem 0.7rem;
+}
+.floorplan-status {
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.mini-map.floorplan,
+.creation-map.floorplan {
+  display: block;
+  padding: 0.75rem;
+}
+#solo-map.floorplan {
+  padding: 0;
+}
+#solo-expanded-map.floorplan svg {
+  max-height: none;
+}
+.floorplan .floorplan-viewport {
+  width: 100%;
+  box-sizing: border-box;
+}
+#solo-map-dialog {
+  width: min(1100px, 94vw);
+  max-width: 94vw;
+}
+
+.solo-page .mini-map.floorplan .floor-label,
+.floorplan .floor-label {
+  font:
+    17px Arial,
+    sans-serif;
+}
+.location-context {
+  display: inline-block;
+  margin: 0.35rem 0;
+  padding: 0.4rem 0.75rem;
+  border-inline-start: 3px solid var(--focus);
+  color: var(--text);
+  background: var(--panel-inset);
+}
+.floor-building-boundary {
+  fill: currentColor;
+  fill-opacity: 0.03;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-dasharray: 8 5;
+}
+.floor-building-title {
+  fill: currentColor;
+  font:
+    16px Arial,
+    sans-serif;
+}
+.exterior-portal .floor-wall {
+  stroke-dasharray: 5 5;
+  stroke-width: 2;
+}
+.outdoor-room .floor-surface {
+  fill-opacity: 0.025;
+  stroke-dasharray: 3 6;
+}

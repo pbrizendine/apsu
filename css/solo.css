@@ -1,0 +1,818 @@
+body.solo-page {
+  max-width: none;
+  padding: 24px;
+}
+.solo-page main {
+  max-width: 1500px;
+  margin: auto;
+}
+.solo-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: start;
+  margin: 20px 0;
+}
+.eyebrow,
+.solo-note,
+#save-status,
+#solo-usage {
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+.solo-layout {
+  display: grid;
+  grid-template-columns: minmax(200px, 1fr) minmax(300px, 2.3fr) minmax(200px, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+.solo-panel {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--apsu-panel, var(--background));
+  padding: 20px;
+  margin-bottom: 18px;
+}
+.solo-panel h2 {
+  font-size: 1.05rem;
+  margin: 0 0 16px;
+}
+.solo-panel h3 {
+  font-size: 0.95rem;
+}
+.solo-actions {
+  display: grid;
+  gap: 10px;
+}
+.solo-actions button,
+.solo-page .solo-composer button {
+  margin: 0;
+}
+.solo-conversation {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+#solo-chat {
+  overflow: auto;
+  height: clamp(160px, calc(100dvh - 570px), 520px);
+  min-height: 160px;
+  resize: vertical;
+  padding: 12px 0;
+  border-block: 1px solid var(--border);
+}
+#solo-chat p {
+  padding: 10px 12px;
+  margin: 0 0 6px;
+  overflow-wrap: anywhere;
+}
+#solo-chat .story-message {
+  font-size: 0.9rem;
+  opacity: 0.85;
+  background: var(--button);
+  border-radius: 6px;
+}
+#solo-chat-form {
+  max-width: none;
+}
+.solo-composer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+.solo-page dialog {
+  width: min(580px, calc(100vw - 24px));
+  max-height: 90dvh;
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  background: var(--background);
+  color: var(--text);
+}
+.solo-page dialog::backdrop {
+  background: rgb(0 0 0 / 45%);
+}
+.solo-page dialog form {
+  max-width: none;
+}
+.solo-consent {
+  display: flex;
+  align-items: start;
+  gap: 10px;
+}
+.solo-consent input {
+  width: auto;
+  margin-top: 4px;
+}
+#lockpick-dialog {
+  width: min(950px, calc(100vw - 24px));
+  height: min(790px, 95dvh);
+  overflow: hidden;
+  padding: 10px;
+}
+#solo-lock-frame {
+  display: block;
+  border: 0;
+  width: 100%;
+  height: calc(100% - 65px);
+  background: transparent;
+}
+#cancel-lock {
+  display: block;
+  margin: 8px auto 0;
+}
+.solo-page [hidden] {
+  display: none !important;
+}
+@media (max-width: 1000px) {
+  .solo-layout {
+    grid-template-columns: 220px minmax(0, 1fr);
+  }
+  .solo-layout > aside:last-child {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+}
+@media (max-width: 650px) {
+  body.solo-page {
+    padding: 12px;
+  }
+  .solo-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .solo-layout > *,
+  .solo-layout > aside:last-child {
+    display: block;
+    width: 100%;
+  }
+  .solo-conversation {
+    order: -1;
+    min-height: 420px;
+  }
+  .solo-heading {
+    flex-wrap: wrap;
+  }
+  #solo-chat {
+    height: 35vh;
+  }
+}
+/* The account-page rules otherwise cap every non-multiplayer page to 800px. */
+body.app-page.solo-page main {
+  width: 100%;
+  max-width: 1500px;
+}
+body.app-page.solo-page .solo-panel h2 {
+  font-size: 1.05rem;
+}
+
+#solo-message {
+  min-height: 64px;
+  height: 76px;
+}
+
+/* Reuse the multiplayer room's panel, header and map presentation. */
+body.app-page.solo-page main {
+  display: block;
+  max-width: 1600px;
+}
+.solo-layout {
+  grid-template-columns: minmax(190px, 1fr) minmax(360px, 2.9fr) minmax(190px, 1fr);
+  gap: 16px;
+}
+.solo-panel {
+  margin: 0;
+  padding: 16px;
+  background: var(--panel-fill);
+  border-color: var(--panel-border);
+}
+.solo-conversation {
+  position: static;
+  min-width: 0;
+}
+.solo-panel h2 {
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--panel-border);
+}
+#solo-chat {
+  height: clamp(240px, calc(100dvh - 400px), 640px);
+}
+#solo-chat .solo-emote {
+  color: var(--action-color, #9974b7);
+}
+#solo-inventory {
+  padding: 0;
+  list-style: none;
+}
+#solo-inventory li {
+  padding: 10px;
+  margin-bottom: 8px;
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  background: var(--panel-inset);
+}
+.solo-map-button {
+  display: block;
+  width: 100%;
+  padding: 4px;
+  margin: 0 0 12px;
+  cursor: zoom-in;
+}
+#solo-map {
+  display: block;
+}
+#solo-map svg,
+#solo-expanded-map svg {
+  display: block;
+  width: 100%;
+  max-height: 330px;
+}
+.solo-page .map-edge {
+  stroke: var(--border);
+  stroke-width: 2;
+}
+.solo-page .map-node {
+  fill: var(--panel-inset);
+  stroke: var(--border);
+}
+.solo-page .map-node.current {
+  fill: var(--active);
+  stroke: var(--focus);
+}
+.solo-page .mini-map text {
+  fill: var(--text);
+  font: 11px sans-serif;
+}
+.solo-page .world-card details {
+  margin: 12px 0;
+}
+.solo-page .world-card .button-link {
+  display: block;
+  text-align: center;
+}
+@media (max-width: 1000px) {
+  .solo-layout {
+    grid-template-columns: 220px minmax(0, 1fr);
+  }
+}
+@media (max-width: 650px) {
+  .solo-layout {
+    display: flex;
+  }
+}
+#solo-chat-form {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--panel-border);
+  border-radius: 11px;
+  background: var(--panel-inset);
+  margin-top: 12px;
+}
+#solo-chat-form label {
+  display: block;
+  margin: 0;
+}
+#solo-message {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  background: var(--input);
+  color: var(--text);
+  font: inherit;
+}
+
+#image-preview {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 16px 0;
+}
+.solo-page dialog input:not([type='checkbox']),
+.solo-page dialog textarea,
+.solo-page dialog select {
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: 10px;
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  background: var(--input);
+  color: var(--text);
+  font: inherit;
+}
+.solo-page dialog label {
+  display: block;
+  margin-top: 12px;
+}
+#image-prompt {
+  width: 100%;
+}
+#room-characters button {
+  width: 100%;
+  text-align: left;
+}
+
+.solo-page #room-items:empty::before {
+  content: none;
+}
+
+/* The toolbar owns the single divider; its heading must not add another. */
+body.app-page.solo-page .panel-toolbar h2 {
+  border: 0;
+  padding: 0;
+}
+.solo-page #room-characters {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+}
+.solo-page #solo-character,
+.solo-page #elias-presence {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  text-align: left;
+  font: inherit;
+  background: transparent;
+  box-shadow: none;
+  color: var(--text);
+  white-space: normal;
+}
+.solo-character-name {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.solo-character-detail {
+  font-size: 0.85em;
+  font-weight: 400;
+  line-height: 1.4;
+}
+.solo-page #elias-presence:hover {
+  background: var(--panel-inset);
+  border-color: var(--panel-border);
+}
+#solo-chat .roleplay-action {
+  color: var(--action-color, #9974b7);
+}
+
+#solo-ai-dialog [role='tablist'] {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+#solo-ai-dialog [role='tab'][aria-selected='true'] {
+  background: var(--active);
+  border-color: var(--focus);
+}
+
+/* Solo chat sizes to its contents instead of inheriting multiplayer's fixed height. */
+body.app-page.solo-page .room-chat.solo-conversation {
+  box-sizing: border-box;
+  height: auto;
+  max-height: none;
+  min-height: 0;
+  overflow: visible;
+}
+.solo-conversation > * {
+  flex-shrink: 0;
+}
+.solo-page #solo-chat-form {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 12px 0 0;
+  min-width: 0;
+}
+.solo-page .solo-composer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-between;
+}
+.solo-composer-tools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.solo-page #solo-commands {
+  width: auto;
+  margin: 0;
+}
+#solo-counter {
+  white-space: nowrap;
+}
+.solo-delivery {
+  display: block;
+  font-size: 0.8em;
+  opacity: 0.8;
+  margin-top: 5px;
+}
+
+#solo-typing {
+  min-height: 1.4em;
+  margin: 6px 0;
+  color: var(--muted);
+  font-size: 0.9em;
+}
+#room-characters button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  white-space: normal;
+}
+#npc-ooc-panel textarea {
+  display: block;
+  width: 100%;
+  min-height: 110px;
+  box-sizing: border-box;
+}
+
+#solo-recipient {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  margin-bottom: 0.7rem;
+  border: 1px solid var(--border, #89afbd);
+  border-radius: 0.55rem;
+  background: var(--input);
+  color: inherit;
+  font: inherit;
+}
+
+#kept-scene {
+  width: 100%;
+  max-height: 18rem;
+  object-fit: contain;
+  border-radius: 0.6rem;
+  display: block;
+}
+.scene-gallery-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin: 0.5rem 0;
+}
+#scene-gallery {
+  animation: scene-in 0.2s ease-out;
+}
+@keyframes scene-in {
+  from {
+    opacity: 0.5;
+    transform: translateX(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #scene-gallery {
+    animation: none;
+  }
+}
+.solo-reactions {
+  font-size: 0.8rem;
+  display: block;
+  margin: 0.3rem 0 0.7rem;
+}
+#image-decision {
+  display: flex;
+  gap: 0.6rem;
+  margin: 0.7rem 0;
+}
+#image-decision[hidden] {
+  display: none;
+}
+
+/* World tools use the same panel vocabulary as room play. */
+.world-editor {
+  width: min(1050px, 94vw);
+  max-height: 90vh;
+  overflow: auto;
+}
+.editor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+  gap: 20px;
+}
+.editor-grid section {
+  border: 1px solid var(--border);
+  padding: 18px;
+  border-radius: 10px;
+  background: var(--panel-fill);
+}
+.editor-grid label,
+.living-panel label {
+  display: grid;
+  gap: 6px;
+  margin: 12px 0;
+}
+.editor-grid input,
+.editor-grid textarea,
+.editor-grid select,
+.living-panel input {
+  width: 100%;
+  box-sizing: border-box;
+}
+.editor-grid select[multiple] {
+  min-height: 105px;
+}
+.living-panel .living-toggle {
+  display: flex;
+  align-items: start;
+  gap: 8px;
+}
+.living-toggle input {
+  width: auto;
+  margin-top: 4px;
+}
+#living-actions {
+  display: grid;
+  gap: 8px;
+}
+#living-actions:empty {
+  display: none;
+}
+.solo-page select,
+.solo-page select option {
+  background: var(--input);
+  color: var(--text);
+  border-color: var(--border);
+}
+.solo-page select {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px;
+  max-width: 100%;
+  color-scheme: inherit;
+}
+
+.map-tools {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 12px 0;
+}
+.map-viewport {
+  overflow: auto;
+  max-height: 65vh;
+}
+#solo-expanded-map {
+  min-width: 300px;
+}
+.editor-grid input[type='checkbox'] {
+  width: auto;
+}
+.living-panel .muted {
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+#surroundings-image {
+  width: 100%;
+  height: auto;
+  max-height: 360px;
+  object-fit: contain;
+  border-radius: 6px;
+  margin: 0.75rem 0;
+}
+
+.solo-own-character {
+  width: 100%;
+  text-align: left;
+}
+#surroundings-image {
+  cursor: zoom-in;
+}
+#surroundings-viewer {
+  width: min(94vw, 1200px);
+}
+.image-zoom-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+#surroundings-viewport {
+  overflow: auto;
+  max-height: 70vh;
+}
+#surroundings-expanded {
+  display: block;
+  max-width: none;
+  height: auto;
+}
+#solo-player-form {
+  display: grid;
+  gap: 0.75rem;
+}
+/* Dedicated world editor: one task at a time. */
+.world-editor-page main {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+.world-editor-page .world-editor {
+  width: 100%;
+  max-height: none;
+  overflow: visible;
+}
+.editor-tabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 1.5rem 0;
+}
+.editor-tabs button[aria-pressed='true'],
+#editor-room-list button[aria-pressed='true'] {
+  border-color: var(--accent);
+  box-shadow: inset 3px 0 var(--accent);
+  font-weight: 700;
+}
+.world-editor-page .editor-grid {
+  display: block;
+}
+.world-editor-page .editor-grid section[hidden] {
+  display: none;
+}
+.world-editor-page .editor-room-workspace {
+  display: grid;
+  grid-template-columns: minmax(180px, 260px) minmax(0, 1fr);
+  gap: 2rem;
+}
+#editor-room-list {
+  display: grid;
+  gap: 0.4rem;
+  max-height: 65vh;
+  overflow: auto;
+}
+#editor-room-list button {
+  width: 100%;
+  text-align: left;
+  white-space: normal;
+}
+.editor-room-fields {
+  min-width: 0;
+}
+.editor-room-fields textarea {
+  min-height: 130px;
+}
+.editor-room-fields fieldset {
+  margin: 1rem 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+#editor-connections {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.5rem;
+}
+#editor-connections label {
+  display: flex;
+  align-items: center;
+  margin: 0.25rem;
+}
+#editor-connections input {
+  width: auto;
+}
+.editor-room-fields details {
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+.editor-room-fields summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+.world-editor-page .editor-grid > section:not(.editor-room-workspace) {
+  max-width: 720px;
+}
+@media (max-width: 700px) {
+  .world-editor-page .editor-room-workspace {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  #editor-room-list {
+    max-height: 200px;
+  }
+}
+.world-editor-page [hidden] {
+  display: none !important;
+}
+.world-editor-page main {
+  width: 100%;
+  box-sizing: border-box;
+}
+.world-editor-page {
+  margin: 0;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+.world-editor-page .editor-grid :is(input:not([type='checkbox']), textarea, select) {
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel-fill);
+  color: inherit;
+  font: inherit;
+}
+.world-editor-page .editor-grid label:has(input[type='checkbox']) {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+.world-editor-page header > p {
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  letter-spacing: normal !important;
+}
+
+.item-value {
+  color: #258449;
+  font-weight: 600;
+}
+[data-theme='midnight'] .item-value {
+  color: #80dc9e;
+}
+#kept-scene {
+  cursor: zoom-in;
+}
+
+.npc-item-line {
+  display: block;
+  margin-block: 0.4rem;
+}
+:root:is(
+    [data-theme='dark'],
+    [data-theme='forest'],
+    [data-theme='midnight'],
+    [data-theme='art-deco'],
+    [data-theme='cyberpunk']
+  )
+  .item-value {
+  color: #80dc9e;
+}
+
+.surroundings-loading {
+  min-height: 170px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: linear-gradient(110deg, var(--input) 30%, var(--panel) 50%, var(--input) 70%);
+  background-size: 250% 100%;
+  animation: surroundings-shimmer 2.5s ease-in-out infinite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px;
+  text-align: center;
+}
+.surroundings-loading[hidden],
+#surroundings-decision[hidden] {
+  display: none;
+}
+#surroundings-decision {
+  display: flex;
+  gap: 8px;
+  margin: 10px 0;
+}
+@keyframes surroundings-shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .surroundings-loading {
+    animation: none;
+  }
+}
+
+#npc-ooc-panel #relationship-status {
+  min-height: 10rem;
+  line-height: 1.6;
+  resize: vertical;
+  cursor: text;
+}

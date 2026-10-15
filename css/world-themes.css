@@ -1,0 +1,366 @@
+/* World-theme composition, developed alongside the APSU Figma theme draft.
+   Decoration is code-native SVG; no generation calls or external assets. */
+:root[data-theme='deco'] {
+  --world-bg: #111a1c;
+  --world-surface: #192426;
+  --world-input: #10191b;
+  --world-text: #eee6d5;
+  --world-muted: #b9b9ac;
+  --world-accent: #d2b47b;
+  --world-border: #46504b;
+  --world-radius: 2px;
+  --world-art: url('../assets/world-deco.svg');
+}
+:root[data-theme='fantasy'] {
+  --world-bg: #171c1b;
+  --world-surface: #212a26;
+  --world-input: #151d19;
+  --world-text: #e9e5d5;
+  --world-muted: #b4beaf;
+  --world-accent: #c7bc8d;
+  --world-border: #475b4b;
+  --world-radius: 8px;
+  --world-art: url('../assets/world-fantasy.svg');
+}
+:root[data-theme='cyberpunk'] {
+  --world-bg: #0f1720;
+  --world-surface: #18232f;
+  --world-input: #0d161e;
+  --world-text: #e3ebee;
+  --world-muted: #a7bac4;
+  --world-accent: #80d6d2;
+  --world-border: #3f5665;
+  --world-radius: 2px;
+  --world-art: url('../assets/world-cyberpunk.svg');
+}
+:root:is([data-theme='deco'], [data-theme='fantasy'], [data-theme='cyberpunk']) {
+  --background: var(--world-bg);
+  --page-gradient: var(--world-bg);
+  --text: var(--world-text);
+  --muted: var(--world-muted);
+  --focus: var(--world-accent);
+  --border: var(--world-border);
+  --panel-border: var(--world-border);
+  --separator: var(--world-border);
+  --input: var(--world-input);
+  --panel-fill: var(--world-surface);
+  --apsu-panel: var(--world-surface);
+  --panel-inset: var(--world-input);
+  --button: var(--world-surface);
+  --hover: var(--world-border);
+  --active: var(--world-border);
+  --world-panel: var(--world-surface);
+  --send-button: var(--world-accent);
+  --system-fill: var(--world-input);
+  --apsu-shadow: none;
+  --world-space: 20px;
+  color-scheme: dark;
+}
+/* Compact navigation gives the location, rather than the site logo, the stage. */
+body.solo-page {
+  padding: 20px 28px;
+  font-size: 15px;
+}
+body.solo-page > header {
+  margin: 0 auto 22px;
+  max-width: 1500px;
+}
+:root:is([data-theme='deco'], [data-theme='fantasy'], [data-theme='cyberpunk'])
+  body.app-page
+  > header {
+  min-height: 64px;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  padding: 0 0 14px;
+  box-shadow: none;
+}
+:root:is([data-theme='deco'], [data-theme='fantasy'], [data-theme='cyberpunk'])
+  body.app-page
+  > header
+  .apsu-home {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--focus);
+  font-size: 26px;
+  letter-spacing: 0.12em;
+}
+.solo-heading {
+  padding: 8px 0 24px;
+  align-items: center;
+  margin: 0 0 24px;
+  border-bottom: 1px solid var(--border);
+}
+.solo-heading h1 {
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 400;
+  line-height: 1.25;
+  margin: 10px 0;
+}
+.solo-heading .eyebrow {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+}
+.solo-heading > div:last-child {
+  max-width: 350px;
+  text-align: right;
+}
+.solo-heading > div:last-child button {
+  font-size: 12px;
+  padding: 8px 10px;
+}
+:root:is([data-theme='deco'], [data-theme='fantasy'], [data-theme='cyberpunk']) .solo-heading {
+  position: relative;
+  min-height: 125px;
+  background-image: var(--world-art);
+  background-repeat: no-repeat;
+  background-position: calc(100% - 370px) center;
+  background-size: 330px 110px;
+}
+:root:is([data-theme='deco'], [data-theme='fantasy'], [data-theme='cyberpunk'])
+  .solo-heading
+  > div:first-child {
+  background: var(--background);
+  max-width: calc(100% - 390px);
+  position: relative;
+  padding-right: 20px;
+}
+.solo-layout {
+  gap: 24px;
+  grid-template-columns: minmax(220px, 1fr) minmax(360px, 2.65fr) minmax(240px, 1.1fr);
+}
+body.solo-page :is(.solo-panel, .living-panel) {
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: none;
+}
+:root:is([data-theme='deco'], [data-theme='fantasy'], [data-theme='cyberpunk'])
+  .app-page
+  :is(.solo-panel, .living-panel, .room-card, .room-chat, dialog) {
+  background: var(--world-surface);
+  border: 1px solid var(--world-border);
+  border-radius: var(--world-radius);
+  outline: 0;
+  box-shadow: none;
+}
+:root:is([data-theme='deco'], [data-theme='fantasy'], [data-theme='cyberpunk'])
+  .app-page
+  :is(button, .button-link, summary) {
+  background: transparent;
+  color: var(--world-text);
+  border: 1px solid var(--world-border);
+  border-radius: var(--world-radius);
+  box-shadow: none;
+  letter-spacing: 0;
+  font-variant: normal;
+}
+:root:is([data-theme='deco'], [data-theme='fantasy'], [data-theme='cyberpunk'])
+  .app-page
+  :is(button, .button-link):hover:not(:disabled) {
+  border-color: var(--world-accent);
+  background: var(--world-input);
+}
+:root:is([data-theme='deco'], [data-theme='fantasy'], [data-theme='cyberpunk'])
+  .app-page
+  :is(input, textarea, select) {
+  background: var(--world-input);
+  color: var(--world-text);
+  border: 1px solid var(--world-border);
+  border-radius: var(--world-radius);
+  box-shadow: none;
+}
+:root:is([data-theme='deco'], [data-theme='fantasy'], [data-theme='cyberpunk'])
+  .app-page
+  :is(input, textarea)::placeholder {
+  color: var(--world-muted);
+  opacity: 1;
+}
+:root:is([data-theme='deco'], [data-theme='fantasy'], [data-theme='cyberpunk'])
+  .solo-page
+  :is(.panel-toolbar h2, .solo-panel > h2, .living-panel h2) {
+  font-family: 'Bricolage Grotesque', Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  font-variant: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--world-accent);
+  border: 0;
+  padding: 0;
+}
+.solo-page .panel-toolbar {
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.solo-page .panel-toolbar :is(.panel-grip, .panel-minimize) {
+  background: none;
+  border-color: transparent;
+  opacity: 0.65;
+}
+.solo-page #connection-status {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0 0 16px;
+}
+.solo-page #solo-chat {
+  height: clamp(180px, calc(100dvh - 670px), 600px);
+  padding: 8px 0 20px;
+  border-top: 0;
+}
+.solo-page #solo-chat p {
+  margin-bottom: 14px;
+  padding: 10px 4px;
+  line-height: 1.75;
+}
+.solo-page #solo-chat .story-message {
+  background: none;
+  padding: 6px 12px;
+  border-left: 2px solid var(--border);
+  border-radius: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+  opacity: 1;
+}
+.solo-page #solo-chat .story-message strong {
+  font-weight: 500;
+}
+.solo-page #solo-chat-form {
+  background: none;
+  border: 0;
+  padding: 16px 0 0;
+  border-radius: 0;
+}
+.solo-page #solo-chat-form label {
+  font-size: 12px;
+  color: var(--muted);
+}
+.solo-page #solo-message {
+  font-size: 15px;
+  min-height: 100px;
+  padding: 14px;
+  line-height: 1.65;
+}
+.solo-page #solo-send {
+  padding: 10px 24px;
+  min-height: 40px;
+}
+:root:is([data-theme='deco'], [data-theme='fantasy'], [data-theme='cyberpunk'])
+  .solo-page
+  #solo-send {
+  background: var(--world-accent);
+  color: var(--world-bg);
+  border-color: var(--world-accent);
+  font-weight: 600;
+}
+.solo-page .living-toggle {
+  font-size: 12px;
+  line-height: 1.5;
+}
+.solo-page .living-panel .muted {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.solo-page #living-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.solo-page #living-actions button {
+  font-size: 12px;
+  margin: 0;
+  padding: 8px 10px;
+}
+.solo-page #living-encounter {
+  font-size: 13px;
+  line-height: 1.5;
+}
+:root[data-theme='fantasy'] .solo-heading h1 {
+  font-family: 'Literata', Georgia, serif;
+}
+:root[data-theme='fantasy'] .solo-panel {
+  border-top: 2px solid var(--world-border);
+}
+:root[data-theme='deco'] .solo-heading {
+  border-bottom: 3px double var(--world-border);
+}
+:root[data-theme='deco'] .solo-heading h1 {
+  font-family: 'Literata', Georgia, serif;
+  letter-spacing: 0.015em;
+}
+:root[data-theme='cyberpunk'] .solo-heading h1 {
+  font-family: 'Bricolage Grotesque', Arial, sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+:root[data-theme='cyberpunk'] .solo-panel {
+  border-top: 2px solid var(--world-accent);
+}
+:root[data-theme='cyberpunk'] .solo-heading .eyebrow {
+  font-family: monospace;
+}
+@media (max-width: 1100px) {
+  .solo-layout {
+    gap: 16px;
+    grid-template-columns: minmax(180px, 1fr) minmax(300px, 2fr);
+  }
+  .solo-layout > .room-sidebar {
+    grid-column: 1/-1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    align-items: start;
+  }
+  :root:is([data-theme='deco'], [data-theme='fantasy'], [data-theme='cyberpunk']) .solo-heading {
+    background-image: none;
+  }
+}
+@media (max-width: 720px) {
+  body.solo-page {
+    padding: 14px;
+  }
+  .solo-layout,
+  .solo-layout > .room-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .solo-layout > *,
+  .solo-layout > .room-sidebar > * {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .solo-conversation {
+    order: -1;
+  }
+  .solo-heading {
+    flex-direction: column;
+    align-items: start;
+    gap: 12px;
+    padding-bottom: 16px;
+  }
+  .solo-heading > div:last-child {
+    text-align: left;
+    max-width: none;
+  }
+  :root:is([data-theme='deco'], [data-theme='fantasy'], [data-theme='cyberpunk'])
+    .solo-heading
+    > div:first-child {
+    max-width: none;
+  }
+  .solo-page #solo-chat {
+    height: 42dvh;
+  }
+}
+/* Native macOS button chrome otherwise paints a pale fill behind dark text themes. */
+:root:is([data-theme='deco'], [data-theme='fantasy'], [data-theme='cyberpunk'])
+  .app-page
+  :is(button, .button-link, summary) {
+  appearance: none;
+  -webkit-appearance: none;
+}

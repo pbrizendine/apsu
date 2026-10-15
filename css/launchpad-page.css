@@ -1,0 +1,290 @@
+body {
+  max-width: none;
+}
+header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: start;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+header > p {
+  grid-column: 2;
+  margin: 12px 0;
+  font-size: 28px;
+}
+main {
+  max-width: 640px;
+  margin: 0 auto;
+}
+.account-menu {
+  grid-column: 3;
+  justify-self: end;
+  position: relative;
+}
+summary {
+  padding: 12px 18px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--button);
+  cursor: pointer;
+}
+summary:hover {
+  background: var(--hover);
+}
+summary:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+.account-options {
+  position: absolute;
+  right: 0;
+  width: min(240px, calc(100vw - 32px));
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--background);
+  z-index: 1;
+}
+.account-options p {
+  font-size: 16px;
+  overflow-wrap: anywhere;
+}
+.account-options button {
+  width: 100%;
+  margin-top: 8px;
+}
+.world-card {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 24px;
+  margin-top: 24px;
+  background: var(--button);
+}
+.world-card h2 {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.world-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+dialog {
+  width: min(420px, calc(100vw - 32px));
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  background: var(--background);
+}
+dialog::backdrop {
+  background: rgb(0 0 0 / 15%);
+}
+dt {
+  font-weight: bold;
+  margin-top: 16px;
+}
+dd {
+  margin: 4px 0 0;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 400px) {
+  header {
+    gap: 4px;
+  }
+  summary {
+    padding: 12px 8px;
+  }
+}
+
+.launch-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.launch-tabs [aria-selected='true'] {
+  background: var(--active);
+  font-weight: 700;
+}
+#singleplayer-panel [hidden],
+#multiplayer-panel [hidden] {
+  display: none !important;
+}
+#solo-worlds .world-actions {
+  justify-content: flex-start;
+  gap: 8px;
+}
+#create-solo-dialog form {
+  max-width: none;
+}
+
+/* A world is revealed as each validated stage arrives. */
+#create-solo-dialog {
+  width: min(920px, calc(100vw - 32px));
+  box-sizing: border-box;
+  max-height: 90dvh;
+}
+#generation-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  padding: 0;
+  list-style: none;
+  margin: 24px 0;
+}
+#generation-steps li {
+  padding: 12px;
+  border-top: 2px solid var(--border);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+#generation-steps .generation-current {
+  border-color: var(--focus);
+  color: var(--text);
+  background: var(--input);
+}
+#world-preview {
+  margin: 24px 0;
+}
+#world-preview h3 {
+  font:
+    500 2rem Literata,
+    Georgia,
+    serif;
+  margin-bottom: 8px;
+}
+.creation-counts {
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+.creation-map {
+  padding: 16px;
+  border: 1px solid var(--border);
+  background: var(--input);
+  overflow: auto;
+}
+.creation-map svg {
+  width: 100%;
+  min-width: 440px;
+  max-height: 440px;
+}
+.creation-places {
+  margin: 20px 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.creation-places details {
+  border-bottom: 1px solid var(--border);
+  padding: 12px;
+}
+.creation-places summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+.creation-places h4 {
+  margin-bottom: 4px;
+}
+.creation-cast {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+.creation-cast article {
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+.creation-cast h4 {
+  margin: 0 0 8px;
+}
+#world-generation input:not([type='checkbox']),
+#world-generation select,
+#world-generation textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+@media (max-width: 600px) {
+  #generation-steps,
+  .creation-cast,
+  .creation-places {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .creation-map svg {
+    min-width: 360px;
+  }
+  #create-solo-dialog {
+    padding: 16px;
+  }
+}
+.creation-map .map-edge {
+  stroke: var(--border);
+  stroke-width: 2;
+}
+.creation-map .map-node {
+  fill: var(--input);
+  stroke: var(--border);
+  stroke-width: 1.5;
+}
+.creation-map .map-node.current {
+  fill: var(--active);
+  stroke: var(--focus);
+}
+.creation-map text {
+  fill: var(--text);
+  font:
+    12px Arial,
+    sans-serif;
+}
+@media (prefers-reduced-motion: no-preference) {
+  #world-preview > h3,
+  .creation-cast article {
+    animation: creation-reveal 0.6s ease-out both;
+  }
+  @keyframes creation-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(5px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* Reveal each label once its stage begins; untouched stages remain quiet bars. */
+#generation-steps li {
+  min-height: 3.5em;
+  background: transparent;
+}
+#generation-steps .generation-label {
+  display: block;
+  overflow-wrap: anywhere;
+}
+#generation-steps .generation-revealed .generation-label {
+  animation: generation-reveal 950ms ease-out both;
+}
+#generation-steps .generation-complete {
+  border-color: var(--focus);
+}
+@keyframes generation-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+    filter: blur(5px);
+    text-shadow: 0 0 12px var(--focus);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+    text-shadow: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #generation-steps .generation-revealed .generation-label {
+    animation: none;
+  }
+}

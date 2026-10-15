@@ -1,0 +1,96 @@
+/* Use the same aqua colors and buttons as the room and lockpick. */
+:root {
+  --background: #e6f7ff;
+  --button: #c7eeff;
+  --hover: #8adcff;
+  --active: #5cceff;
+  --border: #0092d1;
+  --focus: #005275;
+  --text: #003247;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 16px;
+  max-width: 640px;
+  background: var(--background);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+}
+header p {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0 0 32px;
+}
+h1 {
+  font-size: 28px;
+  margin: 0 0 12px;
+}
+p {
+  line-height: 1.5;
+}
+form {
+  max-width: 360px;
+}
+label {
+  display: block;
+  margin: 20px 0 8px;
+}
+input,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: white;
+  color: var(--text);
+  font: inherit;
+}
+button,
+.button-link {
+  margin: 20px 0 0;
+  padding: 12px 18px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--button);
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+button:hover,
+.button-link:hover {
+  background: var(--hover);
+}
+button:active,
+.button-link:active {
+  background: var(--active);
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+a {
+  color: var(--focus);
+}
+:is(button, input, textarea, a):focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+#auth-status {
+  min-height: 24px;
+}
+
+.button-link {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--text);
+}
+textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+[hidden] {
+  display: none !important;
+}

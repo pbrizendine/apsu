@@ -1,0 +1,247 @@
+/* Sidebar panels snap into columns; the central chat remains fixed. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.room-details,
+.room-sidebar {
+  min-height: 120px;
+}
+[data-panel-id].surroundings {
+  flex: initial;
+}
+[data-panel-id].world-card {
+  margin-top: 0;
+}
+.panel-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.panel-toolbar h2 {
+  flex: 1;
+  margin: 0 !important;
+  min-width: 0;
+}
+.app-page .panel-grip {
+  padding: 2px 6px;
+  cursor: grab;
+  font-size: 18px;
+  background: transparent;
+  border-color: transparent;
+}
+.panel-dragging {
+  opacity: 0.45;
+}
+.layout-droppable {
+  outline: 1px dashed var(--border);
+  outline-offset: 5px;
+}
+.drop-active {
+  background: var(--system-fill);
+  border-radius: 12px;
+}
+.drop-before {
+  box-shadow: 0 -4px var(--focus) !important;
+}
+.layout-reset {
+  font-size: 11px !important;
+}
+.room-banner {
+  flex-wrap: wrap;
+  gap: 12px;
+}
+#admin-tile .button-link {
+  display: block;
+  margin: 8px 0;
+  text-align: center;
+}
+#world-map {
+  cursor: zoom-in;
+}
+.workspace-dialog {
+  box-sizing: border-box;
+  width: min(780px, calc(100vw - 32px));
+  max-height: 90dvh;
+  overflow: auto;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--apsu-panel);
+  color: var(--text);
+  box-shadow: 0 20px 80px #0005;
+}
+.workspace-dialog::backdrop {
+  background: #10252e80;
+}
+.workspace-dialog-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.workspace-dialog-header h2 {
+  flex: 1;
+  margin: 0;
+  font-family: Lora, serif;
+}
+.workspace-dialog p {
+  line-height: 1.5;
+}
+.workspace-dialog label {
+  display: block;
+  margin: 12px 0;
+}
+.workspace-dialog textarea,
+.workspace-dialog select {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+  background: var(--input);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font: inherit;
+}
+.workspace-dialog fieldset {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin: 16px 0;
+}
+.workspace-dialog input[type='checkbox'] {
+  width: auto;
+}
+.expanded-map-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(160px, 1fr);
+  gap: 20px;
+}
+.expanded-map {
+  display: flex;
+  align-items: center;
+  min-height: 300px;
+  padding: 14px;
+  background: var(--panel-inset);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  position: relative;
+}
+.expanded-map svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.expanded-map .map-edge {
+  stroke: var(--border);
+  stroke-width: 2;
+}
+.expanded-map .map-node {
+  fill: var(--input);
+  stroke: var(--border);
+  stroke-width: 1.5;
+}
+.expanded-map .map-node.current {
+  fill: var(--active);
+  stroke: var(--focus);
+  stroke-width: 3;
+}
+.expanded-map text {
+  fill: var(--text);
+  font:
+    11px 'Nunito Sans',
+    sans-serif;
+  pointer-events: none;
+}
+.expanded-map g {
+  cursor: pointer;
+}
+.expanded-map g:hover .map-node,
+.expanded-map g:focus .map-node {
+  stroke: var(--focus);
+  stroke-width: 3;
+}
+@media (max-width: 600px) {
+  .expanded-map-layout {
+    grid-template-columns: 1fr;
+  }
+  .workspace-dialog {
+    padding: 16px;
+  }
+  .expanded-map {
+    min-height: 220px;
+  }
+}
+.panel-grip {
+  touch-action: none;
+  user-select: none;
+}
+
+.uploaded-world-map {
+  width: 100%;
+  max-height: 65vh;
+  object-fit: contain;
+  border-radius: 8px;
+}
+.inventory-stacks {
+  display: grid;
+  gap: 12px;
+}
+.inventory-stack {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--panel-inset);
+}
+.item-quantity {
+  float: right;
+  border-radius: 8px;
+  padding: 3px 9px;
+  background: var(--active);
+}
+.inventory-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+.inventory-actions select {
+  width: auto;
+  max-width: 100%;
+}
+.world-online-count {
+  padding: 12px;
+  margin-top: 14px;
+  background: var(--panel-inset);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 700;
+}
+.map-upload-controls {
+  margin-top: 16px;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+
+/* A visual copy trails the pointer; the real panel keeps its place until drop. */
+.app-page .panel-drag-ghost {
+  position: fixed;
+  left: 0;
+  top: 0;
+  margin: 0;
+  z-index: 500;
+  box-sizing: border-box;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.96;
+  will-change: transform;
+  box-shadow: 0 18px 45px #0005;
+}
+.panel-dragging {
+  opacity: 0.2;
+}

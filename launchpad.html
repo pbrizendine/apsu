@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script src="js/privacy.js"></script
+    ><script src="js/theme.js"></script>
+    <script src="js/ui.js" defer></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Launchpad | APSU</title>
+    <link rel="stylesheet" href="css/auth.css" />
+    <link rel="stylesheet" href="css/launchpad-page.css" />
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/playtest.css" /><link rel="stylesheet" href="css/site.css" />
+  </head>
+  <body class="app-page">
+    <header>
+      <p><a class="apsu-home" href="index.html">APSU</a></p>
+      <details class="account-menu" id="account-menu" hidden>
+        <summary>Account</summary>
+        <div class="account-options">
+          <p id="account-name"></p>
+          <button type="button" id="view-profile">View Profile</button>
+          <button type="button" id="log-out">Log Out</button>
+        </div>
+      </details>
+    </header>
+    <main>
+      <h1>Launchpad</h1>
+      <div class="launch-tabs" role="tablist" aria-label="Play mode">
+        <button
+          id="multiplayer-tab"
+          role="tab"
+          aria-controls="multiplayer-panel"
+          aria-selected="true"
+          >Multiplayer</button
+        >
+        <button
+          id="singleplayer-tab"
+          role="tab"
+          aria-controls="singleplayer-panel"
+          aria-selected="false"
+          tabindex="-1"
+          >Single Player</button
+        >
+      </div>
+      <section id="multiplayer-panel" role="tabpanel" aria-labelledby="multiplayer-tab">
+        <p id="launchpad-status" role="status">Checking your login…</p>
+        <button id="retry" type="button" hidden>Try Again</button>
+        <div id="world-list"></div>
+        <a id="guest-login" class="button-link" href="login.html" hidden>Log in for multiplayer</a>
+      </section>
+      <section id="singleplayer-panel" role="tabpanel" aria-labelledby="singleplayer-tab" hidden>
+        <h2>Your solo worlds</h2>
+        <p
+          >Saved on this device. No APSU account required. Download a save to back it up or continue
+          in another browser. Signing in does not upload your story.</p
+        >
+        <div class="world-actions"
+          ><button id="create-solo">New World</button
+          ><button id="resume-solo" hidden>Resume unfinished world</button
+          ><button id="import-solo">Import Save</button></div
+        >
+        <input id="solo-file" type="file" accept=".json,application/json" hidden />
+        <p id="solo-library-status" role="status"></p><div id="solo-worlds"></div>
+      </section>
+      <dialog id="create-solo-dialog" aria-labelledby="create-solo-heading">
+        <h2 id="create-solo-heading">Create a solo world</h2>
+        <p
+          >A neighborhood blackout, two people with competing goals, and one fuel can behind a
+          locked door. Negotiate with Mara and Leon, use your lockpick, and decide what happens.</p
+        >
+        <form id="create-solo-form" novalidate
+          ><label for="solo-world-type">World type</label
+          ><select id="solo-world-type"
+            ><option value="mercer">Last Light on Mercer · predefined test</option
+            ><option value="generated">Create from a prompt</option></select
+          >
+          <section id="world-generation" hidden
+            ><label for="world-prompt">Describe your world</label
+            ><textarea
+              id="world-prompt"
+              maxlength="3000"
+              rows="5"
+              placeholder="An art-deco city in the 1980s, after the last train has left…"
+            ></textarea
+            ><label for="world-model">Generation model</label
+            ><select id="world-model"
+              ><option value="apodex/apodex-1.1-mini:free">Apodex 1.1 Mini · Free</option
+              ><option value="custom">Other model</option></select
+            ><input
+              id="world-custom-model"
+              hidden
+              placeholder="provider/model"
+              maxlength="160"
+              aria-label="Custom generation model"
+            /><label for="world-key">OpenRouter key</label
+            ><input
+              id="world-key"
+              type="password"
+              data-secret-label="key"
+              autocomplete="off"
+            /><label
+              ><input id="world-adult" type="checkbox" /> I am 18 or older and approve sending this
+              world prompt to OpenRouter.</label
+            ><label id="world-paid-field" hidden
+              ><input id="world-paid" type="checkbox" /> Allow this explicitly selected paid model
+              to use my credits.</label
+            ><button id="generate-world" type="button">Create my world · 4 stages</button
+            ><button id="pause-generation" type="button" hidden>Pause after this stage</button
+            ><ol id="generation-steps" aria-label="World creation progress"></ol
+            ><p id="generation-status" role="status"></p><div id="world-preview"></div
+            ><p
+              >Four planned requests using your selected model. Progress saves on this device after
+              each stage; failures pause creation without automatic retries. Review your world
+              before entering. Generation does not save your key; an existing remembered connection
+              can be used.</p
+            ></section
+          >
+          <label for="solo-name">Character name</label
+          ><input id="solo-name" maxlength="60" required />
+          <label for="solo-description">Character description (optional)</label
+          ><textarea id="solo-description" maxlength="1000"></textarea>
+          <p role="status" id="solo-create-error"></p>
+          <button id="begin-solo" type="submit">Begin</button
+          ><button type="button" id="cancel-solo-create">Cancel</button>
+        </form>
+      </dialog>
+    </main>
+    <dialog data-profile-kind="player" id="profile-dialog" aria-labelledby="profile-heading">
+      <h2 id="profile-heading">Your Profile</h2>
+      <div id="player-picture-preview"></div
+      ><dl>
+        <dt>Username</dt><dd id="profile-name"></dd> <dt>Member since</dt
+        ><dd id="profile-joined"></dd>
+      </dl>
+      <a
+        class="button-link"
+        id="full-profile-link"
+        href="profile.html"
+        target="_blank"
+        rel="noopener"
+        >View Full Profile</a
+      >
+      <form method="dialog"><button>Close</button></form>
+    </dialog>
+    <script src="js/supabase-vendor.js"></script>
+    <script src="js/apsu-config.js"></script>
+    <script src="js/supabase-client.js"></script
+    ><script src="js/account-eligibility.js"></script
+    ><script src="js/direct-messages.js"></script>
+    <script src="js/image-crop.js"></script
+    ><script src="js/player-picture.js"></script
+    ><script src="js/launchpad.js"></script>
+    <script src="js/solo-engine.js"></script
+    ><script src="js/solo-mercer.js"></script
+    ><script src="js/solo-blueprint.js"></script
+    ><script src="js/solo-generation.js"></script
+    ><script src="js/solo-generation-store.js"></script
+    ><script src="js/world-map.js"></script
+    ><script src="js/solo-simulation.js"></script
+    ><script src="js/solo-generated.js"></script
+    ><script src="js/solo-gallery.js"></script
+    ><script src="js/solo-store.js"></script
+    ><script src="js/solo-connection.js"></script
+    ><script src="js/solo-library.js"></script>
+  </body>
+</html>

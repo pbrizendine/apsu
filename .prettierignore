@@ -1,0 +1,8 @@
+backups/
+supabase/
+assets/
+node_modules/
+
+# Preserve third-party distribution formatting
+js/supabase-vendor.js
+dist/

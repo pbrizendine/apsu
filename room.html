@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script src="js/privacy.js"></script
+    ><script src="js/theme.js"></script>
+    <script src="js/ui.js" defer></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alska Mogue | APSU</title>
+    <link rel="stylesheet" href="css/room-page.css" />
+    <link rel="stylesheet" href="css/room.css" />
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/lockpick-metal.css" />
+    <link rel="stylesheet" href="css/room-workspace.css" />
+    <link rel="stylesheet" href="css/playtest.css" /><link rel="stylesheet" href="css/site.css" />
+    <link rel="stylesheet" href="css/world-themes.css" />
+  </head>
+  <body class="app-page room-page">
+    <header>
+      <p><a class="apsu-home" href="index.html" data-leave-room="APSU Home">APSU</a></p>
+      <nav class="header-actions" aria-label="Room navigation">
+        <a class="button-link" href="launchpad.html" data-leave-room="Disconnect">Home</a>
+        <button type="button" disabled title="Global forums are coming later">Global Forum</button>
+        <details id="account-menu" class="account-menu" hidden>
+          <summary>Account</summary>
+          <div class="account-options">
+            <p id="account-name"></p>
+            <button type="button" id="view-profile">View Profile</button>
+            <button type="button" id="log-out">Log Out</button>
+          </div>
+        </details>
+      </nav>
+    </header>
+
+    <p id="account-status" role="status">Checking your login…</p>
+    <p id="account-recovery" hidden
+      ><a href="world.html?world=alska-mogue" data-leave-room="World Home">World Home</a> |
+      <a href="login.html">Go to login</a></p
+    >
+    <main id="room-content" hidden>
+      <div class="room-banner">
+        <div><p id="world-name"></p><h1 id="room-name">Room A</h1></div>
+      </div>
+      <div class="room-details">
+        <section class="panel surroundings" aria-labelledby="surroundings-heading">
+          <h2 id="surroundings-heading">Your surroundings</h2>
+          <img id="surroundings-image" alt="Room surroundings" hidden />
+          <p id="room-owner"></p><p id="surroundings-description"></p>
+        </section>
+        <section class="panel" aria-labelledby="locations-heading">
+          <h2 id="locations-heading">Go somewhere</h2>
+          <div class="mini-map" id="world-map" aria-label="Location map"></div>
+          <div id="room-exits"></div>
+          <button type="button" id="lock-room-button" hidden>Lock Door</button>
+          <button type="button" id="unlock-room-button" hidden>Unlock Door</button>
+          <p id="lock-status" role="status"></p>
+          <p class="eyebrow">Highlighted room is your location.</p>
+        </section>
+      </div>
+      <section class="room-chat" aria-labelledby="chat-heading">
+        <h2 id="chat-heading" class="visually-hidden">Chat</h2>
+        <div class="chat-tabs" role="group" aria-label="Chat channel"
+          ><button id="chat-ic" type="button" aria-pressed="true">In-Character</button
+          ><button id="chat-ooc" type="button" aria-pressed="false">Out-of-Character</button></div
+        >
+        <p id="chat-scope">This room · in character</p>
+        <p id="chat-connection" role="status"></p>
+        <ol id="chat-messages" aria-label="Room messages" tabindex="0"></ol>
+        <p id="chat-history-status" role="status"></p>
+        <div class="chat-tools"
+          ><button id="chat-commands" type="button">Commands</button
+          ><button id="chat-refresh" type="button">Reconnect Chat</button>
+          <button id="chat-download-ic" type="button">Download IC Chat Logs</button>
+          <button id="chat-download-ooc" type="button" hidden>Download OOC Chat Logs</button></div
+        >
+        <form id="chat-form">
+          <label for="chat-input">Message <small id="chat-counter">0/500</small></label>
+          <textarea
+            id="chat-input"
+            aria-describedby="chat-counter"
+            rows="2"
+            maxlength="500"
+            autocomplete="off"
+            disabled
+          ></textarea>
+          <div class="chat-attachment-tools"
+            ><label class="button-link"
+              >Attach images<input
+                id="chat-image-input"
+                type="file"
+                accept="image/jpeg,image/png,image/webp"
+                multiple /></label
+            ><small>Up to 3 · once per minute</small></div
+          ><div id="chat-image-preview" class="chat-attachments"></div
+          ><button id="chat-send" type="submit" disabled>Send</button>
+        </form>
+        <p id="chat-status" role="status"></p>
+      </section>
+      <aside class="room-sidebar" aria-label="Room information">
+        <section class="panel" aria-labelledby="characters-heading">
+          <h2 id="characters-heading">Characters here</h2>
+          <ul id="room-characters"></ul>
+          <p id="character-name" class="playing-character"></p
+          ><p id="presence-status" role="status">Connecting…</p>
+        </section>
+        <section class="panel" aria-labelledby="items-heading">
+          <h2 id="items-heading">In this location</h2>
+          <div id="room-items"></div><div id="room-objects"></div>
+        </section>
+        <section class="panel"><h2>Inventory</h2><ul id="inventory"></ul></section>
+        <section class="panel world-card"
+          ><h2>Current world</h2
+          ><a id="admin-panel-link" class="button-link" target="_blank" rel="noopener" hidden
+            >Admin Panel</a
+          ><strong>Alska Mogue</strong
+          ><a class="button-link" href="world.html?world=alska-mogue" data-leave-room="World Home"
+            >World Home</a
+          ></section
+        >
+      </aside>
+    </main>
+
+    <dialog id="profile-dialog" aria-labelledby="profile-heading">
+      <h2 id="profile-heading">Profile</h2>
+      <div id="profile-tabs" class="profile-tabs" role="group" aria-label="Profile type" hidden
+        ><button type="button" id="character-tab" aria-pressed="true">Character</button
+        ><button type="button" id="player-tab" aria-pressed="false">Player</button></div
+      ><div id="character-preview" hidden></div
+      ><div id="player-preview"
+        ><div id="player-picture-preview"></div><p id="preview-status" role="status"></p>
+        <dl>
+          <dt>Username</dt><dd id="profile-name"></dd> <dt>Member since</dt
+          ><dd id="profile-joined"></dd> <dt>About Me</dt><dd id="preview-about"></dd>
+        </dl>
+        <p
+          ><a
+            class="button-link"
+            id="full-profile-link"
+            href="profile.html"
+            target="_blank"
+            rel="noopener"
+            >View Full Profile</a
+          ></p
+        > </div
+      ><form method="dialog"><button>Close</button></form>
+    </dialog>
+
+    <dialog id="lockpick-dialog" aria-label="Pick the lock to Room C">
+      <div class="lockpick-toolbar">
+        <button type="button" id="cancel-lockpick" aria-label="Cancel">Cancel</button>
+      </div>
+      <div id="lockpick-container"></div>
+    </dialog>
+
+    <script src="js/supabase-vendor.js"></script>
+    <script src="js/image-crop.js"></script>
+    <script src="js/item-display.js"></script
+    ><script src="js/apsu-config.js"></script>
+    <script src="js/supabase-client.js"></script
+    ><script src="js/account-eligibility.js"></script
+    ><script src="js/direct-messages.js"></script
+    ><script src="js/database-api.js"></script>
+    <script src="js/chat-commands.js"></script
+    ><script src="js/chat-images.js"></script
+    ><script src="js/chat-attention.js"></script
+    ><script src="js/room-chat.js"></script
+    ><script src="js/character-profile.js"></script
+    ><script src="js/player-picture.js"></script
+    ><script src="js/world-map.js"></script
+    ><script src="js/moderation.js"></script
+    ><script src="js/imagine.js"></script
+    ><script src="js/panel-layout.js"></script
+    ><script src="js/room-workspace.js"></script
+    ><script src="js/inventory-ui.js"></script>
+    <script src="js/owned-room.js"></script
+    ><script src="js/room-page.js"></script>
+  </body>
+</html>
